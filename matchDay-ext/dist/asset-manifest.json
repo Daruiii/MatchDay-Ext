@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dfa1b674.css",
+    "main.js": "/static/js/main.a1930f85.js",
+    "static/media/bg-vitality2.gif": "/static/media/bg-vitality2.9e77515fd9b9da94939c.gif",
+    "static/media/SLY.png": "/static/media/SLY.bbb72c459454012974d6.png",
+    "static/media/KC.png": "/static/media/KC.b6970179b25bfed55ab8.png",
+    "static/media/VT.png": "/static/media/VT.98704ce7e01ffb76e741.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.dfa1b674.css",
+    "static/js/main.a1930f85.js"
+  ]
+}

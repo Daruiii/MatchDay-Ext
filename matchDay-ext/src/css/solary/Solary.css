@@ -1,0 +1,15 @@
+.SOLARY {
+    background-color: #101219;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    left : 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    }
+    .SOLARY .team-header {
+        border-bottom: 1px solid #00aeff;
+        }

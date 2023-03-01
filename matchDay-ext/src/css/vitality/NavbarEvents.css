@@ -1,0 +1,29 @@
+.VITALITY .navbar_events {
+    color: #fae100;
+}
+
+.VITALITY  .navbar_events li {
+    background-color: #221C35;
+    border: 1px solid #fae100;
+    border-radius: 5px;
+    color: #fae100;
+}
+
+.VITALITY .navbar_events li:hover {
+    background-color: #fae100;
+    color: #221C35;
+}
+.VITALITY .navbar_events a:hover, .VITALITY .navbar_events li.active a
+{
+    background-color: #fae100;
+    color: #221C35;
+}
+
+.VITALITY .navbar_events li.active {
+    background-color: #fae100;
+    color: #221C35;
+}
+
+.VITALITY .navbar_events a {
+    color: #fae100;
+}

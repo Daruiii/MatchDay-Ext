@@ -1,0 +1,16 @@
+.KARMINE .events_title {
+  color: #04ccfc;
+  }
+
+  .KARMINE .events_content {
+    background-color: #1c243c;
+    color: #a5a19a;
+    }
+
+        .KARMINE .events_content_score_win {
+            color: #00ff00;
+            }
+          
+        .KARMINE .events_content_score_lose {
+            color: #ff0000;
+            }

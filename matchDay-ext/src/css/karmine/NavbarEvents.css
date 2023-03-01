@@ -1,0 +1,28 @@
+.KARMINE .navbar_events {
+    color: #fff;
+}
+
+.KARMINE  .navbar_events li {
+    background-color: #1d253c;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.KARMINE .navbar_events li:hover {
+    background-color: #04ccfc;
+    color: #1b3fa6;
+}
+.KARMINE .navbar_events a:hover, .KARMINE .navbar_events li.active a
+{
+    background-color: #04ccfc;
+    color: #1b3fa6;
+}
+
+.KARMINE .navbar_events li.active {
+    background-color: #04ccfc;
+    color: #1b3fa6;
+}
+
+.KARMINE .navbar_events a {
+    color: #fff;
+}

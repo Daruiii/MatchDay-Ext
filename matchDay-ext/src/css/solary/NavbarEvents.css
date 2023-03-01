@@ -1,0 +1,34 @@
+.SOLARY .navbar_events {
+    color: #fff;
+}
+
+.SOLARY  .navbar_events li {
+    background-color: #101219;
+    border-left: 2px solid #00aeff;
+    border-top: 2px solid #00aeff;
+    border-bottom: 2px solid #ffe000;
+    border-right: 2px solid #ffe000;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.SOLARY .navbar_events li:hover {
+    background-color: #00aeff;
+    border: 2px solid #ffe000;
+    color: #fff;
+}
+.SOLARY .navbar_events a:hover, .SOLARY .navbar_events li.active a
+{
+    background-color: #00aeff;
+    color: #fff;
+}
+
+.SOLARY .navbar_events li.active {
+    background-color: #00aeff;
+    border: 2px solid #ffe000;
+    color: #fff;
+}
+
+.SOLARY .navbar_events a {
+    color: #fff;
+}

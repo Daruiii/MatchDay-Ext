@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "React Chrome Extension",
+  "version": "0.1",
+  "description": "Boilerplate manifest for React based Chrome Extension using Google's Manifest v3",
+  "background": {
+  "service_worker": "./background.js"
+  },
+  "host_permissions" : [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "permissions" : [
+    "webRequest",
+    "activeTab",
+    "tabs",
+    "unlimitedStorage",
+    "storage",
+    "cookies",
+    "background",
+    "notifications"
+  ],
+  "author": "Christian Sendler",
+  "homepage_url": "https://github.com/casendler/",
+  "short_name": "React Extension",
+  "action": {
+  "default_popup": "popup.html",
+  "default_title": "React Chrome Extension",
+  "default_icon": {
+  "16": "/images/teams_logo/manette.png",
+  "32": "/images/teams_logo/manette.png",
+  "48": "/images/teams_logo/manette.png",
+  "128": "/images/teams_logo/manette.png"
+  }
+  },
+  "icons": {
+  "16": "/images/teams_logo/manette.png",
+  "32": "/images/teams_logo/manette.png",
+  "48": "/images/teams_logo/manette.png",
+  "128": "/images/teams_logo/manette.png"
+  }
+  }

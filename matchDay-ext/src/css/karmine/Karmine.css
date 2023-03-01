@@ -1,0 +1,15 @@
+.KARMINE {
+    background-color: #141c2c;
+    color: #c4c6cd;
+    height: 100%;
+    width: 100%;
+    left : 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    }
+    .KARMINE .team-header {
+        border-bottom: 1px solid #04ccfc;
+        }
