@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "React Chrome Extension",
+  "name": "MatchDay",
   "version": "0.1",
-  "description": "Boilerplate manifest for React based Chrome Extension using Google's Manifest v3",
+  "description": "Extension permettant de suivre l'actualité de plusieurs équipes Esport au choix, en utilisant l'api PandaScore",
   "background": {
   "service_worker": "./background.js"
   },
