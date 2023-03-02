@@ -29,7 +29,7 @@ export default function Home() {
 
     return <div className="home">
         <h1 className="top_texte">Prochain match de tes équipes favorites</h1>
-        {vita ? <NextMatch teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-csgo"} teamNameRL={"vitality-rl"} /> : ""}
+        {vita ? <NextMatch teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} /> : ""}
         {karm ? <NextMatch teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} /> : ""}
         {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={""} teamNameCsGo={""} teamNameRL={"solary-rl"} /> : ""}         
         <Footer props={{

@@ -63,6 +63,7 @@
       align-items: center;
       width: 33%;
       height: 100%;
+      cursor:default;
       }
 
       .events_content_match {

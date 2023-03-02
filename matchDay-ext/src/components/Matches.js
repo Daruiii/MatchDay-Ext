@@ -71,6 +71,19 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                     }
                 )
         }
+        if (teamNameCsGo) {
+            fetch('https://api.pandascore.co/teams/' + teamNameCsGo + '/matches?filter[future]=true&sort=&page=number=1&size=50&per_page=10', options)
+                .then(res => res.json())
+                .then((result) => {
+                    setDataCsGo(result);
+                    setLoaded(true);
+                },
+                    (error) => {
+                        setError(error);
+                        setLoaded(true);
+                    }
+                )
+        }
     }
 
     useEffect(() => {
@@ -102,6 +115,11 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                 allData.push(data);
             });
         }
+        if (dataCsGo) {
+            dataCsGo.forEach((data) => {
+                allData.push(data);
+            });
+        }
         console.log(allData);
         return allData;
     }
@@ -114,7 +132,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                 mapData().sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).map((match) => {
                     return (
                         <div key={match.id} className="events_content">
-                            <h5 className="events_content_competition">{match.league.name}</h5>
+                            <h5 className="events_content_competition"   title={match.videogame.name}>{match.league.name}</h5>
                             <div className="events_content_match">
                                 <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
                                 <h5 className="events_content_match_vs">VS</h5>
@@ -209,6 +227,19 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                     }
                 )
         }
+        if (teamNameCsGo) {
+            fetch('https://api.pandascore.co/teams/' + teamNameCsGo + '/matches?filter[future]=false&sort=&page=number=1&size=50&per_page=10', options)
+                .then(res => res.json())
+                .then((result) => {
+                    setDataCsGo(result);
+                    setLoaded(true);
+                },
+                    (error) => {
+                        setError(error);
+                        setLoaded(true);
+                    }
+                )
+        }
     }
 
     useEffect(() => {
@@ -240,6 +271,11 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                 allData.push(data);
             });
         }
+        if (dataCsGo) {
+            dataCsGo.forEach((data) => {
+                allData.push(data);
+            });
+        }
         console.log(allData);
         return allData;
     }
@@ -251,7 +287,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                 mapData().sort((a, b) => (a.begin_at < b.begin_at) ? 1 : -1).map((match) => {
                     return (
                         <div key={match.id} className="events_content">
-                            <h5 className="events_content_competition">{match.league.name}</h5>
+                            <h5 className="events_content_competition"   title={match.videogame.name}>{match.league.name}</h5>
                             <div className="events_content_match">
                                 <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
                                 <h5 className="events_content_match_vs">VS</h5>
@@ -349,6 +385,19 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                     }
                 )
         }
+        if (teamNameCsGo) {
+            fetch('https://api.pandascore.co/teams/' + teamNameCsGo + '/matches?filter[future]=true&sort=&page=number=1&size=50&per_page=10', options)
+                .then(res => res.json())
+                .then((result) => {
+                    setDataCsGo(result);
+                    setLoaded(true);
+                },
+                    (error) => {
+                        setError(error);
+                        setLoaded(true);
+                    }
+                )
+        }
     }
 
     useEffect(() => {
@@ -380,6 +429,11 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                 allData.push(data);
             });
         }
+        if (dataCsGo) {
+            dataCsGo.forEach((data) => {
+                allData.push(data);
+            });
+        }
 
         // set allData[0] to the match with the closest date
         allData.sort((a, b) => (a.begin_at < b.begin_at) ? 1 : -1).reverse();
@@ -394,7 +448,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
             {
                 mapData() ?
                     <div key={mapData().id} className="events_content">
-                        <h5 className="events_content_competition">{mapData().league.name}</h5>
+                        <h5 className="events_content_competition"   title={mapData().videogame.name}>{mapData().league.name}</h5>
                         <div className="events_content_match">
                             <img src={mapData().opponents[0]?.opponent.image_url} alt={mapData().opponents[0]?.opponent.name} width="20" title={mapData().opponents[0]?.opponent.name} className='team-logo' />
                             <h5 className="events_content_match_vs">VS</h5>
