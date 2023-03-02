@@ -1,0 +1,16 @@
+.VITALITY .footer {
+    background-color: #221C35;
+}
+
+.VITALITY .footer_left {
+    background-color: #221C35;
+}
+
+.VITALITY .footer_right {
+    background-color: #fae100;
+    color: #000000;
+}
+
+.VITALITY .footer a {
+    color: #000000;
+}

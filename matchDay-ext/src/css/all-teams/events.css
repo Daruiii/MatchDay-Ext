@@ -109,5 +109,10 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+            font-weight: bold;
             width: 20%;
+        }
+
+        .link-twitch {
+          margin-left: 0.25rem;
         }

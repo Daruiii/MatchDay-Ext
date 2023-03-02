@@ -1,0 +1,16 @@
+.KARMINE .footer {
+    background-color: #20243c;
+}
+
+.KARMINE .footer_left {
+    background-color: #20243c;
+}
+
+.KARMINE .footer_right {
+    background-color: #04ccfc;
+    color: #131a2c;
+}
+
+.KARMINE .footer a {
+    color: #131a2c;
+}

@@ -6,6 +6,13 @@ import KarmineImg from '../../img/teams_logo/KC.png'
 import '../../css/karmine/Karmine.css'
 import '../../css/karmine/NavbarEvents.css'
 import '../../css/karmine/events.css'
+import '../../css/karmine/footer.css'
+import '../../css/all-teams/footer.css'
+import Footer from '../../components/Footer'
+import instaKC from '../../img/footer-logo/karmine/instaKC.png'
+import twitterKC from '../../img/footer-logo/karmine/twitterKC.png'
+import twitchKC from '../../img/footer-logo/karmine/twitchKC.png'
+import youtubeKC from '../../img/footer-logo/karmine/youtubeKC.png'
 
 export default function Karmine() {
 
@@ -20,5 +27,17 @@ export default function Karmine() {
             <Route path="/past" element={<Past />} />
         </Routes>
         </div>
+        <Footer props={{
+            logo1: twitterKC,
+            logo2: youtubeKC,
+            logo3: twitchKC,
+            logo4: instaKC,
+            link1: "https://twitter.com/KarmineCorp",
+            link2: "https://www.youtube.com/channel/UCW5Ma_xnAweFIXCGOAZECAA",
+            link3: "https://www.twitch.tv/kamet0",
+            link4: "https://www.instagram.com/karminecorp",
+            linkShop: "https://karmineshop.com",
+            nameShop: "KARMINESHOP.COM"
+        }} />
     </div>
 }

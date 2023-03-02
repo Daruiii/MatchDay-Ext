@@ -1,0 +1,16 @@
+.SOLARY .footer {
+    background-color :  #00aeff;
+}
+
+.SOLARY .footer_left {
+    background-color :  #00aeff;
+}
+
+.SOLARY .footer_right {
+    background-color: #ffe000;
+    color: #000000;
+}
+
+.SOLARY .footer a {
+    color: #000000;
+}
