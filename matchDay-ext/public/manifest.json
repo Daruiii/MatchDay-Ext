@@ -11,21 +11,13 @@
     "https://*/*"
   ],
   "permissions" : [
-    "webRequest",
-    "activeTab",
-    "tabs",
-    "unlimitedStorage",
     "storage",
-    "cookies",
-    "background",
-    "notifications"
+    "background"
   ],
-  "author": "Christian Sendler",
-  "homepage_url": "https://github.com/casendler/",
-  "short_name": "React Extension",
+  "author": "David Meguira",
   "action": {
   "default_popup": "popup.html",
-  "default_title": "React Chrome Extension",
+  "default_title": "MatchDay",
   "default_icon": {
   "16": "/images/teams_logo/manette.png",
   "32": "/images/teams_logo/manette.png",
