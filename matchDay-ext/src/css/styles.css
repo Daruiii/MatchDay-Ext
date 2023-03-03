@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background-color: #777;
+    background-color: #5b5b5b;
 }
 
 .container {
@@ -13,7 +13,7 @@ body {
 }
 
 .nav {
-    background-color: #333333;
+    background-color: #1d1d1d;
     color: #fff;
     display: flex;
     justify-content: space-between;

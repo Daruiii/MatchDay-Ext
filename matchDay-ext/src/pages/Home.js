@@ -3,7 +3,6 @@ import {NextMatch} from '../components/Matches';
 import Github from '../img/footer-logo/basics/github.png';
 import email from '../img/footer-logo/basics/email.png';
 import twitter from '../img/footer-logo/basics/twitter.png';
-import twitch from '../img/footer-logo/basics/twitch.png';
 import { useState } from 'react';
 
 export default function Home() {
@@ -19,6 +18,9 @@ export default function Home() {
                 if (result.favoritesTeams.includes("Solary")) {
                     setSol(true);
                 }
+                if (result.favoritesTeams.includes("BDS")) {
+                    setBds(true);
+                }
         });
     
         const [vita, setVita] = useState(false);
@@ -27,11 +29,18 @@ export default function Home() {
     
         const [sol, setSol] = useState(false);
 
+        const [bds, setBds] = useState(false);
+
     return <div className="home">
-        <h1 className="top_texte">Prochain match de tes équipes favorites</h1>
+        <h1 className="top_texte">Prochains matchs :</h1>
+        <div className="events">
+        <div className="my_events">
         {vita ? <NextMatch teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} /> : ""}
         {karm ? <NextMatch teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} /> : ""}
-        {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={""} teamNameCsGo={""} teamNameRL={"solary-rl"} /> : ""}         
+        {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={""} teamNameCsGo={""} teamNameRL={"solary-rl"} /> : ""}   
+        {bds ? <NextMatch teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} /> : ""}
+        </div>   
+        </div>
         <Footer props={{
             logo1: Github,
             logo2: email,
@@ -41,8 +50,8 @@ export default function Home() {
             link2: "mailto:davidmgr93@gmail.com",
             link3: "https://twitter.com/davidmgr93",
             link4: "https://www.twitch.tv/daruiii_",
-            linkShop: "https://github.com/Daruiii",
-            nameShop: "My Portfolio"
+            linkShop: "https://github.com/Daruiii/MatchDay",
+            nameShop: "MatchDay",
         }} />
     </div>
 }

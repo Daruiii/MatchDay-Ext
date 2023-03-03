@@ -1,0 +1,30 @@
+.BDS .navbar_events {
+    color: #fff;
+}
+
+.BDS  .navbar_events li {
+    background-color: #22577a;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.BDS .navbar_events li:hover {
+    background-color: #ff0075;
+    color: #ffffff;
+    border: 2px solid #3db4e5;
+}
+.BDS .navbar_events a:hover, .BDS .navbar_events li.active a
+{
+    background-color: #ff0075;
+    color: #ffffff;
+}
+
+.BDS .navbar_events li.active {
+    background-color: #ff0075;
+    color: #ffffff;
+    border: 2px solid #3db4e5;
+}
+
+.BDS .navbar_events a {
+    color: #fff;
+}

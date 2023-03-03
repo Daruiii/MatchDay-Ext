@@ -1,0 +1,16 @@
+.BDS .footer {
+    background-color: #20243c;
+}
+
+.BDS .footer_left {
+    background-color: #3db4e5;
+}
+
+.BDS .footer_right {
+    background-color: #ff0075;
+    color: #ffffff;
+}
+
+.BDS .footer a {
+    color: #ffffff;
+}

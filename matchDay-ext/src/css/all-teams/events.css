@@ -3,6 +3,14 @@
     overflow-y: scroll;
     width: 80%;
 }
+
+.home .my_events{
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 80%;
+    border-bottom: 1px solid #3a3a3a;
+}
+
  /* width */
 .my_events::-webkit-scrollbar {
     width: 0px;
@@ -46,6 +54,7 @@
   }
 
   .events_content {
+    background-color: #ffffffc7;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

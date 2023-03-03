@@ -1,15 +1,15 @@
 .switch {
     display: inline-block;
     position: relative;
-    width: 70px;
-    height: 40px;
+    width: 35px;
+    height: 20px;
     cursor: pointer;
     overflow: hidden;
   }
   .switch input {
     position: absolute;
-    top: -30px;
-    top: -30px;
+    top: -15x;
+    top: -15px;
     width: 0;
     height: 0;
   }
@@ -28,8 +28,8 @@
     position: absolute;
     top: 50%;
     left: 4px;
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     background: white;
     border-radius: 50%;
     transform: translateY(-50%);
@@ -39,7 +39,7 @@
     background: #346abf;
   }
   .switch input:checked + span:before {
-    left: 34px;
+    left: 17px;
   }
 
   .SETTINGS {

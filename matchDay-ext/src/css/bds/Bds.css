@@ -1,0 +1,15 @@
+.BDS {
+    background-color: #cae0e5;
+    color: #22577a;
+    height: 100%;
+    width: 100%;
+    left : 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    }
+    .BDS .team-header {
+        border-bottom: 1px solid #ff0075;
+        }
