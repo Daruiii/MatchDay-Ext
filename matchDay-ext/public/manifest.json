@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MatchDay",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Extension permettant de suivre l'actualité de plusieurs équipes Esport au choix, en utilisant l'api PandaScore",
   "background": {
   "service_worker": "./background.js"
