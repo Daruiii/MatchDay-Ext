@@ -82,13 +82,24 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
                     <h3 className="tournament-name">{tournament.name}</h3>
                     <div className="tournament-standings">
                         {tournament.standings?.map((standing, index) => {
+                            if (standing.team.slug === tournament.currentTeam) {
+                                return (
+                                    <div key={index} className="tournament-standings-current-team">
+                                        <h5 className="team-rank"> {standing.rank} </h5>
+                                        <h5 className="team-name"> {standing.team.name} </h5>
+                            {standing.wins !== null && standing.losses !== null ? <h5 className="team-wins-losses"> {standing.wins} - {standing.losses} </h5> : <h5 className="team-wins-losses"> - </h5>}
+                            </div>
+                                )
+                            }
+                            else {
                             return (
                                <div key={index} className="tournament-standings-team">
                             <h5 className="team-rank"> {standing.rank} </h5>
-                            {standing.team.slug === tournament.currentTeam ? <h5 className="team-name-current"> {standing.team.name} </h5> : <h5 className="team-name"> {standing.team.name} </h5>}
+                            <h5 className="team-name"> {standing.team.name} </h5>
                             {standing.wins !== null && standing.losses !== null ? <h5 className="team-wins-losses"> {standing.wins} - {standing.losses} </h5> : <h5 className="team-wins-losses"> - </h5>}
                             </div>
                             )
+                        }
                         })}
                     </div>
                 </div>
