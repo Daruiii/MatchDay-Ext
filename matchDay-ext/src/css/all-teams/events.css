@@ -5,10 +5,11 @@
 }
 
 .home .my_events{
-    max-height: 300px;
+    height: 200px;
     overflow-y: scroll;
     width: 80%;
-    border-bottom: 1px solid #3a3a3a;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 0.5rem;
 }
 
  /* width */
@@ -59,7 +60,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1rem ;
     height: 40px;
     border-radius: 5px;
     margin-bottom: 1rem;

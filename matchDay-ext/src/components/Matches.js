@@ -4,8 +4,10 @@ import "../css/all-teams/events.css"
 const options = {
     method: 'GET',
     headers: {
+        // account api key 1 : lAB9KFwFOoCKffaEatGjngrAiXlWHYVIJCjIb9Yql_lV-RDwOS8
+        // account api key 2 : 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ
         accept: 'application/json',
-        authorization: 'Bearer 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ'
+        authorization: 'Bearer 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ',
     }
 };
 
@@ -22,7 +24,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         allProps.forEach((prop) => {
             if (prop) {
-                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=50', options)
+                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=20', options)
                     .then((res) => res.json())
                     .then((data) => {
                         if (prop === teamNameLol) {
@@ -109,7 +111,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         allProps.forEach((prop) => {
             if (prop) {
-                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=50', options)
+                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=20', options)
                     .then((res) => res.json())
                     .then((data) => {
                         if (prop === teamNameLol) {
@@ -210,7 +212,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
         const allProps = [ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL ];
         allProps.forEach((prop) => {
             if (prop) {
-                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=50', options)
+                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=1', options)
                 .then((res) => res.json())
                 .then((data) => {
                     if (prop === teamNameLol) {
@@ -281,5 +283,5 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
     );
 
 }
-// export Past Matches and Upcoming Matches components
-export { PastMatches, MatchesUpcoming, NextMatch };
+
+export { PastMatches, MatchesUpcoming, NextMatch};
