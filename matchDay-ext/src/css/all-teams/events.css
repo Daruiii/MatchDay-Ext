@@ -5,11 +5,11 @@
 }
 
 .home .my_events{
-    height: 200px;
+    height: 150px;
+    max-height: 150px;
     overflow-y: scroll;
     width: 80%;
     border-bottom: 1px solid #000000;
-    margin-bottom: 0.5rem;
 }
 
  /* width */

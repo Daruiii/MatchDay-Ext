@@ -20,7 +20,30 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
-    const getData = () => {
+    const getData = async() => {
+        const dataError = { error: "" };
+        
+        // test api request is ok 
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // if data return an error, return an error 
+                if (data.error) {
+                    dataError.error = data.error;
+                    setError(dataError.error);
+                    setLoaded(true);
+                }
+            })
+            await Promise.all(test).catch(err => {
+                console.log("dataError: ", dataError.error);
+            });
+
+            if (dataError.error !== "") {
+                setError(dataError.error);
+                setLoaded(true);
+                return;
+            }
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         allProps.forEach((prop) => {
             if (prop) {
@@ -52,9 +75,6 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
         getData();
     }, []);
 
-    if (error) return <p>Error!</p>;
-    if (!loaded) return <p>Loading...</p>;
-
     const mapData = () => {
         const allData = [];
         const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL];
@@ -72,7 +92,9 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
 
     const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
 
-    return (
+    if (error) return <p>Error: {error}</p>;
+    if (!loaded) return <p>Loading...</p>;
+    else return (
         <>
             {
                 mapData().sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).map((match) => {
@@ -107,7 +129,31 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
-    const getData = () => {
+    const getData = async () => {
+
+        const dataError = { error: "" };
+        
+        // test api request is ok 
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // if data return an error, return an error 
+                if (data.error) {
+                    dataError.error = data.error;
+                    setError(dataError.error);
+                    setLoaded(true);
+                }
+            })
+            await Promise.all(test).catch(err => {
+                console.log("dataError: ", dataError.error);
+            });
+
+            if (dataError.error !== "") {
+                setError(dataError.error);
+                setLoaded(true);
+                return;
+            }
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         allProps.forEach((prop) => {
             if (prop) {
@@ -139,9 +185,6 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         getData();
     }, []);
 
-    if (error) return <p>Error!</p>;
-    if (!loaded) return <p>Loading...</p>;
-
     const mapData = () => {
         const allData = [];
         const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL];
@@ -155,8 +198,9 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         );
         return allData.filter((match) => match.status === "finished");
     }
-
-    return (
+    if (error) return <p>Error : {error}</p>;
+    if (!loaded) return <p>Loading...</p>;
+    else return (
         <>
             {
                 // mapdata most recent first and display
@@ -208,11 +252,36 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
-    const getData = () => {
+    const getData = async () => {
+
+        const dataError = { error: "" };
+        
+        // test api request is ok 
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // if data return an error, return an error 
+                if (data.error) {
+                    dataError.error = data.error;
+                    setError(dataError.error);
+                    setLoaded(true);
+                }
+            })
+            await Promise.all(test).catch(err => {
+                console.log("dataError : ", dataError.error);
+            });
+
+            if (dataError.error !== "") {
+                setError(dataError.error);
+                setLoaded(true);
+                return;
+            }
+
         const allProps = [ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL ];
         allProps.forEach((prop) => {
             if (prop) {
-                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=1', options)
+                fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=10', options)
                 .then((res) => res.json())
                 .then((data) => {
                     if (prop === teamNameLol) {
@@ -231,6 +300,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                 .catch((error) => {
                     setError(error);
                     setLoaded(true);
+                    console.log("je suis NextMatch error");
                 });
             }
         });
@@ -239,9 +309,6 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
     useEffect(() => {
         getData();
     }, []);
-
-    if (error) return <p>Error!</p>;
-    if (!loaded) return <p>Loading...</p>;
 
     const mapData = () => {
         const allData = [];
@@ -260,8 +327,9 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
     }
 
     const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
-
-    return (
+    if (error) return <p>Error : {error}</p>;
+    if (!loaded) return <p>Loading...</p>;
+    else return (
         <>
             {
                 mapData() ?

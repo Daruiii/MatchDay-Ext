@@ -5,6 +5,7 @@ import Karmine from "./pages/karmine/Karmine";
 import Solary from "./pages/solary/Solary";
 import Bds from "./pages/bds/Bds";
 import Settings from "./pages/Settings";
+import Error from "./pages/error/Error";
 import { Route, Routes } from 'react-router-dom';
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/solary/*" element={<Solary />} />
           <Route path="/bds/*" element={<Bds />} />
           <Route path="/settings/*" element={<Settings />} />
+          <Route path="/error/*" element={<Error />} />
         </Routes>
       </div>
     </div>

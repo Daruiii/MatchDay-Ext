@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../css/all-teams/tournament.css"
+import { useNavigate } from 'react-router-dom';
+
 
 const options = {
     method: 'GET',
@@ -14,22 +16,50 @@ const options = {
 const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
     const [tournamentsStandings, setTournamentsStandings] = useState([]);
     const [tournamentsIDplusName, setTournamentsIDplusName] = useState([]);
-
+    const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
     const getData = async () => {
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         const allIdsPlusNames = [{ id: "", name: "" , date: "", status: "" }];
         const allTournamentsStandings = [{ name: "", standings: "", date: "", status: "" }];
         const sortedTournamentsStandings = [{ name: "", standings: "" , currentTeam: ""}];
-    
+        const dataError = { error: "" };
+        
+        // test api request is ok 
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+            .then(response => response.json())
+            .then(data => {
+                // if data return an error, return an error 
+                if (data.error) {
+                    dataError.error = data.error;
+                    setError(dataError.error);
+                    setLoaded(true);
+                }
+            })
+            await Promise.all(test).catch(err => {
+                console.log("dataError: ", dataError.error);
+            });
+
+            if (dataError.error !== "") {
+                setError(dataError.error);
+                setLoaded(true);
+                return;
+            }
+
         const requests = allProps
             .filter(prop => prop !== "")
             .map(prop =>
+                // veruify if fetch request is ok and if the tournament id is not undefined 
                 fetch(`https://api.pandascore.co/teams/${prop}/matches?sort=&page=number=1&size=50&per_page=1`, options)
                     .then(response => response.json())
                     .then(data => {
                         if (data[0].tournament_id !== undefined) {
                             allIdsPlusNames.push({ id: data[0].tournament_id, name: data[0].league.name + " " + data[0].serie.full_name + " " + data[0].tournament.name , date: data[0].begin_at, status: data[0].status });
                         }
+                    }).catch(err => {
+                        setError(err);
+                        setLoaded(true);
                     })
                     .then(() => {
                         // add the current tournament standings to the allTournamentsStandings array not the allIdsPlusNames array
@@ -40,14 +70,20 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
                                 .then(data => {
                                     if (data.length > 1) {
                                         allTournamentsStandings.push({ name: currentTournamentIdAndName.name, standings: data , date: currentTournamentIdAndName.date, status: currentTournamentIdAndName.status });
+                                        setLoaded(true);
                                     }
                                 })
-                                .catch(err => console.error(err));
                         }
                     })
-                    .catch(err => console.error(err))
-            );
+                    .catch(err => {
+                        setError(err);
+                        setLoaded(true);
+                    }
+                    )
+            )
+        
         await Promise.all(requests);
+        if (allTournamentsStandings.length > 1) {
         sortedTournamentsStandings[0].standings = allTournamentsStandings?.sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0].standings;
         sortedTournamentsStandings[0].name = allTournamentsStandings?.sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0].name;
         if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameLol)) {
@@ -61,7 +97,12 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
         } else if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameRL)) {
             sortedTournamentsStandings[0].currentTeam = teamNameRL;
         }
-        await Promise.all(sortedTournamentsStandings);
+        }
+        await Promise.all(sortedTournamentsStandings).catch(err => {
+            console.log("je suis tournament Promise.all error");
+            setError(err);
+            setLoaded(true);
+        });
         setTournamentsStandings(sortedTournamentsStandings);
         setTournamentsIDplusName(allIdsPlusNames);
     
@@ -74,7 +115,18 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
 
     console.log("tournamentsStandings outside", tournamentsStandings);
     console.log("tournamentsIDplusName outside", tournamentsIDplusName);
-    
+    console.log("error outside", error);
+    if (error) {
+        return (
+            <>
+                <h2> {error} </h2>
+                <p> Check your Panda Score<a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information or wait a few minutes and try again </p>
+            </>
+        )
+    } else if (!loaded) {
+        return <div>Loading...</div>;
+    } else {
+
     return (<>
         {tournamentsStandings ? tournamentsStandings.map((tournament, index) => {
             return (
@@ -106,6 +158,7 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
             )
         }) : "Classment indisponible"}
     </>)
+}
 }
 
 export default TournamentRunningsStandings;
