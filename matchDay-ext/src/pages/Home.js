@@ -55,7 +55,7 @@ export default function Home() {
             link2: "mailto:davidmgr93@gmail.com",
             link3: "https://twitter.com/davidmgr93",
             link4: "https://www.twitch.tv/daruiii_",
-            linkShop: "https://github.com/Daruiii/MatchDay",
+         
             nameShop: "MatchDay",
         }} />
     </div>

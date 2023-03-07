@@ -1,4 +1,5 @@
 import "../css/settings.css"
+import "../css/config.css";
 import Karmine from '../img/teams_logo/KC.png'
 import Solary from '../img/teams_logo/SLY.png'
 import Vitality from '../img/teams_logo/VT.png'
@@ -25,6 +26,17 @@ export default function Settings() {
             document.getElementById("BDS").checked = true;
         }
     });
+
+    chrome.storage.local.get(['token'], function (result) {
+        document.querySelector(".input-token").value = result.token;
+    });
+
+    function saveToken() {
+        const token = document.querySelector(".input-token").value;
+        chrome.storage.local.set({ token: token });
+        console.log("token saved");
+        window.close();
+    }
 
     return <div className="SETTINGS">
         <h2>Choose your favorite teams</h2>
@@ -151,6 +163,11 @@ export default function Settings() {
         </label>
             </div>
             </div>
+        <h2>Configure your token</h2>
+        <div className="token-container">
+        <input className="input-token" type="text" placeholder="PandaScore Token" />
+            <button className="btn-save-token" onClick={saveToken}>Sauvegarder</button>
+        </div>
             <Footer props={{
             logo1: Github,
             logo2: email,
@@ -160,8 +177,7 @@ export default function Settings() {
             link2: "mailto:davidmgr93@gmail.com",
             link3: "https://twitter.com/davidmgr93",
             link4: "https://www.twitch.tv/daruiii_",
-            linkShop: "https://github.com/Daruiii/MatchDay",
-            nameShop: "MatchDay Repo",
+            nameShop: "MatchDay",
         }} />
     </div>
 }

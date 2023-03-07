@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "../css/all-teams/tournament.css"
-import { useNavigate } from 'react-router-dom';
-
+import "../css/all-teams/tournament.css";
 
 const options = {
     method: 'GET',
@@ -9,16 +7,20 @@ const options = {
         // account api key 1 : lAB9KFwFOoCKffaEatGjngrAiXlWHYVIJCjIb9Yql_lV-RDwOS8
         // account api key 2 : 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ
         accept: 'application/json',
-        authorization: 'Bearer 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ'
+        authorization: 'Bearer '
     }
 };
+ /*global chrome*/
+ chrome.storage.local.get(['token'], function (result) {
+    options.headers.authorization = 'Bearer ' + result.token;
+});
 
 const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
+
     const [tournamentsStandings, setTournamentsStandings] = useState([]);
     const [tournamentsIDplusName, setTournamentsIDplusName] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const getData = async () => {
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         const allIdsPlusNames = [{ id: "", name: "" , date: "", status: "" }];
@@ -118,9 +120,10 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
     console.log("error outside", error);
     if (error) {
         return (
-            <>
+            <><div className="error">
                 <h2> {error} </h2>
-                <p> Check your Panda Score<a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information or wait a few minutes and try again </p>
+                { error === "Invalid credentials" ? <p> Please check your Panda Score  <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> copy and replace your key in settings </p> : error === "Too many requests" ? <p> You have reached the maximum number of requests per hour, please wait a few minutes and try again or check your Panda Score <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information </p> : ""}
+            </div>
             </>
         )
     } else if (!loaded) {

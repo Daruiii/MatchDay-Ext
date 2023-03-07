@@ -7,9 +7,13 @@ const options = {
         // account api key 1 : lAB9KFwFOoCKffaEatGjngrAiXlWHYVIJCjIb9Yql_lV-RDwOS8
         // account api key 2 : 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ
         accept: 'application/json',
-        authorization: 'Bearer 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ',
+        authorization: 'Bearer '
     }
 };
+ /*global chrome*/
+ chrome.storage.local.get(['token'], function (result) {
+    options.headers.authorization = 'Bearer ' + result.token;
+});
 
 const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
     const [dataLol, setData] = useState();
@@ -92,7 +96,11 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
 
     const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
 
-    if (error) return <p>Error: {error}</p>;
+    if (error) return (  <>
+    <div className="error">
+        <h2> {error} </h2>
+        { error === "Invalid credentials" ? <p> Please check your Panda Score  <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> copy and replace your key in settings </p> : error === "Too many requests" ? <p> You have reached the maximum number of requests per hour, please wait a few minutes and try again or check your Panda Score <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information </p> : ""}</div>
+    </>);
     if (!loaded) return <p>Loading...</p>;
     else return (
         <>
@@ -198,7 +206,11 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         );
         return allData.filter((match) => match.status === "finished");
     }
-    if (error) return <p>Error : {error}</p>;
+    if (error) return (  <>
+    <div className="error">
+        <h2> {error} </h2>
+        { error === "Invalid credentials" ? <p> Please check your Panda Score  <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> copy and replace your key in settings </p> : error === "Too many requests" ? <p> You have reached the maximum number of requests per hour, please wait a few minutes and try again or check your Panda Score <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information </p> : ""}</div>
+    </>);
     if (!loaded) return <p>Loading...</p>;
     else return (
         <>
@@ -327,7 +339,11 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
     }
 
     const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
-    if (error) return <p>Error : {error}</p>;
+    if (error) return (  <>
+    <div className="error">
+        <h2> {error} </h2>
+        { error === "Invalid credentials" ? <p> Please check your Panda Score  <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> copy and replace your key in settings </p> : error === "Too many requests" ? <p> You have reached the maximum number of requests per hour, please wait a few minutes and try again or check your Panda Score <a href="https://app.pandascore.co/dashboard/main" target="_blank" rel="noreferrer"> Dashboard</a> for more information </p> : ""}</div>
+    </>)
     if (!loaded) return <p>Loading...</p>;
     else return (
         <>

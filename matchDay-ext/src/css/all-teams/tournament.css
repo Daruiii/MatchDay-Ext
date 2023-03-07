@@ -11,6 +11,13 @@
             
             }
 
+            .error {
+                color: white;
+                font-weight: bold;
+                background-color: gray;
+              }
+
+
             .tournament-standings-team{
                 background-color: #ffffffc7;
                 display: flex;
