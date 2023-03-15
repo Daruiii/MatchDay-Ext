@@ -31,7 +31,6 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
         const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 // if data return an error, return an error 
                 if (data.error) {
                     dataError.error = data.error;
@@ -145,7 +144,6 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 // if data return an error, return an error 
                 if (data.error) {
                     dataError.error = data.error;
@@ -272,7 +270,6 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
         const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 // if data return an error, return an error 
                 if (data.error) {
                     dataError.error = data.error;
@@ -312,7 +309,6 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                 .catch((error) => {
                     setError(error);
                     setLoaded(true);
-                    console.log("je suis NextMatch error");
                 });
             }
         });

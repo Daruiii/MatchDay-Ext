@@ -25,7 +25,7 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
         const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
         const allIdsPlusNames = [{ id: "", name: "" , date: "", status: "" }];
         const allTournamentsStandings = [{ name: "", standings: "", date: "", status: "" }];
-        const sortedTournamentsStandings = [{ name: "", standings: "" , currentTeam: ""}];
+        const lastTournament = [{ name: "", standings: "" , currentTeam: ""}];
         const dataError = { error: "" };
         
         // test api request is ok 
@@ -86,26 +86,28 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
         
         await Promise.all(requests);
         if (allTournamentsStandings.length > 1) {
-        sortedTournamentsStandings[0].standings = allTournamentsStandings?.sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0].standings;
-        sortedTournamentsStandings[0].name = allTournamentsStandings?.sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0].name;
-        if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameLol)) {
-            sortedTournamentsStandings[0].currentTeam = teamNameLol;
-        } else if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameLol2)) {
-            sortedTournamentsStandings[0].currentTeam = teamNameLol2;
-        } else if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameValorant)) {
-            sortedTournamentsStandings[0].currentTeam = teamNameValorant;
-        } else if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameCsGo)) {
-            sortedTournamentsStandings[0].currentTeam = teamNameCsGo;
-        } else if (sortedTournamentsStandings[0].standings.map((standing) => standing.team.slug).includes(teamNameRL)) {
-            sortedTournamentsStandings[0].currentTeam = teamNameRL;
+            lastTournament[0] = allTournamentsStandings?.sort((a, b) => (a.date > b.date) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0];
+            if (lastTournament[0].standings.map((standing) => standing.team.slug).includes(teamNameLol)) {
+                lastTournament[0].currentTeam = teamNameLol;
+            }
+            else if (lastTournament[0].standings.map((standing) => standing.team.slug).includes(teamNameLol2)) {
+                lastTournament[0].currentTeam = teamNameLol2;
+            }
+            else if (lastTournament[0].standings.map((standing) => standing.team.slug).includes(teamNameValorant)) {
+                lastTournament[0].currentTeam = teamNameValorant;
+            }
+            else if (lastTournament[0].standings.map((standing) => standing.team.slug).includes(teamNameCsGo)) {
+                lastTournament[0].currentTeam = teamNameCsGo;
+            }
+            else if (lastTournament[0].standings.map((standing) => standing.team.slug).includes(teamNameRL)) {
+                lastTournament[0].currentTeam = teamNameRL;
+            }
         }
-        }
-        await Promise.all(sortedTournamentsStandings).catch(err => {
-            console.log("je suis tournament Promise.all error");
+        await Promise.all(lastTournament).catch(err => {
             setError(err);
             setLoaded(true);
         });
-        setTournamentsStandings(sortedTournamentsStandings);
+        setTournamentsStandings(lastTournament);
         setTournamentsIDplusName(allIdsPlusNames);
     
         return allTournamentsStandings;
@@ -115,9 +117,6 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
         getData();
     }, []);
 
-    console.log("tournamentsStandings outside", tournamentsStandings);
-    console.log("tournamentsIDplusName outside", tournamentsIDplusName);
-    console.log("error outside", error);
     if (error) {
         return (
             <><div className="error">
