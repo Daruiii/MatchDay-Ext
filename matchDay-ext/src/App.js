@@ -13,7 +13,7 @@ const App = () => {
   const [tokenPandaScore, setTokenPandaScore] = useState("");
   /*global chrome*/
   useEffect(() => {
-    chrome.storage.local.get(['token'], function (result) {
+    chrome.storage.sync.get(['token'], function (result) {
       setTokenPandaScore(result.token);
     });
   }, []);

@@ -5,7 +5,7 @@ const Config = () => {
     /*global chrome*/
     function saveToken() {
         const token = document.querySelector(".input-token").value;
-        chrome.storage.local.set({ token: token });
+        chrome.storage.sync.set({ token: token });
         console.log("token saved");
         window.location.reload();
     }

@@ -12,7 +12,7 @@ import twitter from '../img/footer-logo/basics/twitter.png';
 export default function Settings() {
 
     /*global chrome*/
-    chrome.storage.local.get(['favoritesTeams'], function (result) {
+    chrome.storage.sync.get(['favoritesTeams'], function (result) {
         if (result.favoritesTeams.includes("Vitality")) {
             document.getElementById("Vitality").checked = true;
         }
@@ -27,13 +27,13 @@ export default function Settings() {
         }
     });
 
-    chrome.storage.local.get(['token'], function (result) {
+    chrome.storage.sync.get(['token'], function (result) {
         document.querySelector(".input-token").value = result.token;
     });
 
     function saveToken() {
         const token = document.querySelector(".input-token").value;
-        chrome.storage.local.set({ token: token });
+        chrome.storage.sync.set({ token: token });
         console.log("token saved");
         window.close();
     }
@@ -47,18 +47,18 @@ export default function Settings() {
         <label className="switch">
         <input type="checkbox" onChange={() => 
 
-        chrome.storage.local.get(['favoritesTeams'], function (result) {
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
             if (result.favoritesTeams.includes("Karmine")) {
-                chrome.storage.local.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Karmine") });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Karmine") });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Karmine was in the array, now deleted :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Karmine").checked = false;
                 }
                 )
             } else {
-                chrome.storage.local.set({ favoritesTeams: [...result.favoritesTeams, "Karmine"] });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: [...result.favoritesTeams, "Karmine"] });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Karmine was not in the array, now added :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Karmine").checked = true;
@@ -77,18 +77,18 @@ export default function Settings() {
         <label className="switch">
         <input type="checkbox" onChange={() => 
 
-        chrome.storage.local.get(['favoritesTeams'], function (result) {
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
             if (result.favoritesTeams.includes("Solary")) {
-                chrome.storage.local.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Solary") });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Solary") });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Solary was in the array, now deleted :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Solary").checked = false;
                 }
                 )
             } else {
-                chrome.storage.local.set({ favoritesTeams: [...result.favoritesTeams, "Solary"] });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: [...result.favoritesTeams, "Solary"] });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Solary was not in the array, now added :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Solary").checked = true;
@@ -108,18 +108,18 @@ export default function Settings() {
         <label className="switch">
         <input type="checkbox" onChange={() => 
 
-        chrome.storage.local.get(['favoritesTeams'], function (result) {
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
             if (result.favoritesTeams.includes("Vitality")) {
-                chrome.storage.local.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Vitality") });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Vitality") });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Vitality was in the array, now deleted :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Vitality").checked = false;
                 }
                 )
             } else {
-                chrome.storage.local.set({ favoritesTeams: [...result.favoritesTeams, "Vitality"] });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: [...result.favoritesTeams, "Vitality"] });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("Vitality was not in the array, now added :")
                     console.log(result.favoritesTeams)
                     document.getElementById("Vitality").checked = true;
@@ -138,18 +138,18 @@ export default function Settings() {
         <label className="switch">
         <input type="checkbox" onChange={() => 
 
-        chrome.storage.local.get(['favoritesTeams'], function (result) {
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
             if (result.favoritesTeams.includes("BDS")) {
-                chrome.storage.local.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "BDS") });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "BDS") });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("BDS was in the array, now deleted :")
                     console.log(result.favoritesTeams)
                     document.getElementById("BDS").checked = false;
                 }
                 )
             } else {
-                chrome.storage.local.set({ favoritesTeams: [...result.favoritesTeams, "BDS"] });
-                chrome.storage.local.get(['favoritesTeams'], function (result) {
+                chrome.storage.sync.set({ favoritesTeams: [...result.favoritesTeams, "BDS"] });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
                     console.log("BDS was not in the array, now added :")
                     console.log(result.favoritesTeams)
                     document.getElementById("BDS").checked = true;

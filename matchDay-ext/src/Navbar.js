@@ -11,7 +11,7 @@ export default function Navbar() {
 
         
         /*global chrome*/
-        chrome.storage.local.get(['favoritesTeams'], function (result) {
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
             if (result.favoritesTeams.includes("Vitality")) {
                 setVita(true);
             }

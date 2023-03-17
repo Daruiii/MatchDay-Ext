@@ -11,7 +11,7 @@ const options = {
     }
 };
 /*global chrome*/
-chrome.storage.local.get(['token'], function (result) {
+chrome.storage.sync.get(['token'], function (result) {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 
