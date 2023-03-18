@@ -18,7 +18,7 @@ const SimpleSlider = () => {
         cssEase: "linear"
     };
     /*global chrome*/
-    chrome.storage.local.get(['favoritesTeams'], function (result) {
+    chrome.storage.sync.get(['favoritesTeams'], function (result) {
         if (result.favoritesTeams.includes("Vitality")) {
             setVita(true);
         }
@@ -31,15 +31,15 @@ const SimpleSlider = () => {
         if (result.favoritesTeams.includes("BDS")) {
             setBds(true);
         }
-    });
+});
 
-    const [vita, setVita] = useState(false);
+const [vita, setVita] = useState(false);
 
-    const [karm, setKarm] = useState(false);
+const [karm, setKarm] = useState(false);
 
-    const [sol, setSol] = useState(false);
+const [sol, setSol] = useState(false);
 
-    const [bds, setBds] = useState(false);
+const [bds, setBds] = useState(false);
     return (
         <Slider {...settings} className="slide">
             {vita ?
