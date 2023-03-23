@@ -36,7 +36,7 @@ export default function Karmine() {
             link2: "https://www.youtube.com/channel/UCW5Ma_xnAweFIXCGOAZECAA",
             link3: "https://www.twitch.tv/kamet0",
             link4: "https://www.instagram.com/karminecorp",
-            linkShop: "https://karmineshop.com",
+            linkShop: "https://karminecorp.fr",
             nameShop: "KARMINESHOP.COM"
         }} />
     </div>
