@@ -170,7 +170,7 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
                         </div>
                     )
                 }
-                return <div key={index} className="my-tournament">
+                return <div key={index} className="error">
                     {tournament.name ? <h3 className="tournament-name">{tournament.name}</h3> : ""}
                     <h3 className="tournament-name"> {tournament.standings} </h3>
                     <h3 className="tournament-name"> Le classement n'est pas disponible pour ce tournoi </h3>

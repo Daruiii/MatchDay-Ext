@@ -34,6 +34,12 @@ export default function Navbar() {
 
     const [bds, setBds] = useState(false);
 
+    function rotateCenter() {
+        document.getElementById("ExtSettings").classList.toggle("rotate-center");
+    }
+    function slideTop() {
+        document.getElementById("VitalityLogo").classList.toggle("slide-top");
+    }
 
     return (
         <nav className="nav">
@@ -45,7 +51,7 @@ export default function Navbar() {
                 {bds ? <CustomLink to="/bds" id="BdsLogo"><img src={Bds} alt="Bds" width="20" /></CustomLink> : null}
             </ul>
             <ul>
-                <CustomLink to="/settings" className="settings"><img src={Settings} alt="Settings" width="20" /></CustomLink>
+                <CustomLink to="/settings" className="settings"><img src={Settings} alt="Settings" width="20" onClick={rotateCenter} id="ExtSettings"/></CustomLink>
             </ul>
         </nav >
     )

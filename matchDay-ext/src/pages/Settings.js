@@ -163,7 +163,7 @@ export default function Settings() {
         </label>
             </div>
             </div>
-        <h2>Configure your token</h2>
+        <div className="token-row"><h2>Token </h2><a href="https://app.pandascore.co/login" target="_blank" rel="noreferrer"><h2 className="scoreColor">PandaScore</h2></a></div>
         <div className="token-container">
         <input className="input-token" type="text" placeholder="PandaScore Token" />
             <button className="btn-save-token" onClick={saveToken}>Sauvegarder</button>
