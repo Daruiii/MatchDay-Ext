@@ -93,7 +93,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
         return allData.filter((match) => match.status === "not_started" || match.status === "running");
     }
 
-    const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
+    const now = new Date(new Date().setHours(new Date().getHours() + 2)).toISOString().slice(11, 16);
 
     if (error) return (  <>
     <div className="error">
@@ -114,10 +114,11 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                                 <h5 className="events_content_match_vs">VS</h5>
                                 <img src={match.opponents[1]?.opponent.image_url} alt={match.opponents[1]?.opponent.name} width="20" title={match.opponents[1]?.opponent.name} className='team-logo' />
                             </div>
+                            {/* date + 1 pour verifier si le match est demain */}
                             {match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{match.begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
                             {
-                                // if now is under mapData().begin_at and mapData().begin_at + 1h then match is in progress + is the same day
-                                match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 1)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={match.streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 1)).toISOString().slice(11, 16)}</h5>
+                                // if now is under mapData().begin_at and mapData().begin_at + 2h then match is in progress + is the same day
+                                match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={match.streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
                             }
                         </div>
                     )
@@ -335,7 +336,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
         return allData.sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0];
     }
 
-    const now = new Date(new Date().setHours(new Date().getHours() + 1)).toISOString().slice(11, 16);
+    const now = new Date(new Date().setHours(new Date().getHours() + 2)).toISOString().slice(11, 16);
     if (error) return (  <>
     <div className="error">
         <h2> {error} </h2>
@@ -353,10 +354,11 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                             <h5 className="events_content_match_vs">VS</h5>
                             <img src={mapData().opponents[1]?.opponent.image_url} alt={mapData().opponents[1]?.opponent.name} width="20" title={mapData().opponents[1]?.opponent.name} className='team-logo' />
                         </div>
+                        {/* Date + 1 pour vérifier si date = demain */}
                         {mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{mapData().begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
                         {
-                            // if now is under mapData().begin_at and mapData().begin_at + 1h then match is in progress + is the same day
-                            mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 1)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={mapData().streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 1)).toISOString().slice(11, 16)}</h5>
+                            // if now is under mapData().begin_at and mapData().begin_at + 2h then match is in progress + is the same day
+                            mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={mapData().streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
                         }
                     </div> : <p>pas de matchs à venir</p>
             }
