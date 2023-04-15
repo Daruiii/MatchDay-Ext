@@ -1,0 +1,16 @@
+
+.M8 .events_title {
+    color: #bdf903;
+    }
+
+.M8 .events_content {
+    background-color: #bdf903;
+    }
+
+        .M8 .events_content_score_win {
+            color: #00ff00;
+            }
+          
+        .M8 .events_content_score_lose {
+            color: #ff0000;
+            }

@@ -1,6 +1,6 @@
 /*global chrome*/
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({ favoritesTeams: ["Vitality", "Karmine"] });
+    chrome.storage.sync.set({ favoritesTeams: ["Vitality", "Karmine", "Gentle Mates" ] });
     chrome.storage.sync.set({ token: "" });
     console.log('Chrome extension successfully installed!');
     return;

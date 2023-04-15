@@ -23,6 +23,9 @@ export default function Home() {
                 if (result.favoritesTeams.includes("BDS")) {
                     setBds(true);
                 }
+                if (result.favoritesTeams.includes("Gentle Mates")) {
+                    setGm(true);
+                }
         });
     
         const [vita, setVita] = useState(false);
@@ -33,6 +36,8 @@ export default function Home() {
 
         const [bds, setBds] = useState(false);
 
+        const [gm, setGm] = useState(false);
+
     return <div className="home">
         <h1 className="top_texte">Prochains matchs :</h1>
         <div className="events">
@@ -40,8 +45,9 @@ export default function Home() {
         {vita || karm || sol || bds ? "" : <h1 className="top_texte">Aucun matchs à venir</h1>}
         {vita ? <NextMatch teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} /> : ""}
         {karm ? <NextMatch teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} /> : ""}
-        {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={""} teamNameCsGo={""} teamNameRL={"solary-rl"} /> : ""}   
+        {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} /> : ""}   
         {bds ? <NextMatch teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} /> : ""}
+        {gm ? <NextMatch teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} /> : ""}
         </div>   
         <div className="standings-tournaments">
             <SimpleSlider />

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Karmine from './img/teams_logo/KC.png'
 import Solary from './img/teams_logo/SLY.png'
 import Vitality from './img/teams_logo/VT.png'
+import M8 from './img/teams_logo/M8.png'
 import ExtLogo from './img/teams_logo/manette.png'
 import Settings from './img/settings.png'
 import Bds from './img/teams_logo/BDS.png'
@@ -24,6 +25,9 @@ export default function Navbar() {
             if (result.favoritesTeams.includes("BDS")) {
                 setBds(true);
             }
+            if (result.favoritesTeams.includes("Gentle Mates")) {
+                setGm(true);
+            }
     });
 
     const [vita, setVita] = useState(false);
@@ -33,6 +37,8 @@ export default function Navbar() {
     const [sol, setSol] = useState(false);
 
     const [bds, setBds] = useState(false);
+
+    const [m8, setGm] = useState(false);
 
     function rotateCenter() {
         document.getElementById("ExtSettings").classList.toggle("rotate-center");
@@ -49,6 +55,7 @@ export default function Navbar() {
                 {karm ? <CustomLink to="/karmine" id="KarmineLogo"><img src={Karmine} alt="Karmine" width="20" /></CustomLink> : null}
                 {sol ? <CustomLink to="/solary" id="SolaryLogo"><img src={Solary} alt="Solary" width="20" /></CustomLink> : null}
                 {bds ? <CustomLink to="/bds" id="BdsLogo"><img src={Bds} alt="Bds" width="20" /></CustomLink> : null}
+                {m8 ? <CustomLink to="/gentle-mates" id="M8Logo"><img src={M8} alt="M8" width="20" /></CustomLink> : null}
             </ul>
             <ul>
                 <CustomLink to="/settings" className="settings"><img src={Settings} alt="Settings" width="20" onClick={rotateCenter} id="ExtSettings"/></CustomLink>

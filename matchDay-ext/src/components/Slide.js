@@ -31,6 +31,9 @@ const SimpleSlider = () => {
         if (result.favoritesTeams.includes("BDS")) {
             setBds(true);
         }
+        if (result.favoritesTeams.includes("Gentle Mates")) {
+            setGm(true);
+        }
 });
 
 const [vita, setVita] = useState(false);
@@ -40,6 +43,9 @@ const [karm, setKarm] = useState(false);
 const [sol, setSol] = useState(false);
 
 const [bds, setBds] = useState(false);
+
+const [gm, setGm] = useState(false);
+
     return (
         <Slider {...settings} className="slide">
             {vita ?
@@ -52,11 +58,15 @@ const [bds, setBds] = useState(false);
                 </div> : ""}
             {sol ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={""} teamNameCsGo={""} teamNameRL={"solary-rl"} />
+                    <TournamentRunningsStandings teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} />
                 </div> : ""}
             {bds ?
                 <div className="slide-each">
                     <TournamentRunningsStandings teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} />
+                </div> : ""}
+            {gm ?
+                <div className="slide-each">
+                    <TournamentRunningsStandings teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} />
                 </div> : ""}
         </Slider>
     );

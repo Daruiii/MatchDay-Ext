@@ -4,6 +4,7 @@ import Karmine from '../img/teams_logo/KC.png'
 import Solary from '../img/teams_logo/SLY.png'
 import Vitality from '../img/teams_logo/VT.png'
 import BDS from "../img/teams_logo/BDS.png"
+import M8 from "../img/teams_logo/M8.png"
 import Footer from '../components/Footer';
 import Github from '../img/footer-logo/basics/github.png';
 import email from '../img/footer-logo/basics/email.png';
@@ -25,6 +26,9 @@ export default function Settings() {
         if (result.favoritesTeams.includes("BDS")) {
             document.getElementById("BDS").checked = true;
         }
+        if (result.favoritesTeams.includes("Gentle Mates")) {
+            document.getElementById("Gentle Mates").checked = true;
+        }
     });
 
     chrome.storage.sync.get(['token'], function (result) {
@@ -41,6 +45,12 @@ export default function Settings() {
     return <div className="SETTINGS">
         <h2>Choose your favorite teams</h2>
         <div className="all-switch">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="switch-container">
         <img src={Karmine} alt="Karmine" width="30" />
         <h3>Karmine  :</h3>
@@ -162,6 +172,35 @@ export default function Settings() {
         <span></span>
         </label>
             </div>
+            <div className="switch-container">
+        <img src={M8} alt="M8" width="30" />
+        <h3>Gentle Mates  :</h3>
+        <label className="switch">
+        <input type="checkbox" onChange={() =>
+        chrome.storage.sync.get(['favoritesTeams'], function (result) {
+            if (result.favoritesTeams.includes("Gentle Mates")) {
+                chrome.storage.sync.set({ favoritesTeams: result.favoritesTeams.filter(team => team !== "Gentle Mates") });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
+                    console.log("Gentle Mates was in the array, now deleted :")
+                    console.log(result.favoritesTeams)
+                    document.getElementById("Gentle Mates").checked = false;
+                }
+                )
+            } else {
+                chrome.storage.sync.set({ favoritesTeams: [...result.favoritesTeams, "Gentle Mates"] });
+                chrome.storage.sync.get(['favoritesTeams'], function (result) {
+                    console.log("Gentle Mates was not in the array, now added :")
+                    console.log(result.favoritesTeams)
+                    document.getElementById("Gentle Mates").checked = true;
+                }
+                )
+            }
+            window.close();
+        })
+        } checked="" id="Gentle Mates" />
+        <span></span>
+        </label>
+        </div>
             </div>
         <div className="token-row"><h2>Token </h2><a href="https://app.pandascore.co/login" target="_blank" rel="noreferrer"><h2 className="scoreColor">PandaScore</h2></a></div>
         <div className="token-container">

@@ -1,0 +1,30 @@
+.M8 .navbar_events {
+    color: #f3f3f3;
+}
+
+.M8  .navbar_events li {
+    background-color: #287d81;
+    border-radius: 5px;
+    color: #f3f3f3;
+}
+
+.M8 .navbar_events li:hover {
+    background-color: #6ae2e5;
+    color: #f3f3f3;
+    border: 2px solid #77941b;
+}
+.M8 .navbar_events a:hover, .M8 .navbar_events li.active a
+{
+    background-color: #6ae2e5;
+    color: #f3f3f3;
+}
+
+.M8 .navbar_events li.active {
+    background-color: #6ae2e5;
+    color: #f3f3f3;
+    border: 2px solid #77941b;
+}
+
+.M8 .navbar_events a {
+    color: #f3f3f3;
+}

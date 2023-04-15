@@ -1,0 +1,16 @@
+.M8 .footer {
+    background-color: #20243c;
+}
+
+.M8 .footer_left {
+    background-color: #939393;
+}
+
+.M8 .footer_right {
+    background-color: #77941b;
+    color: #f3f3f3;
+}
+
+.M8 .footer a {
+    color: #f3f3f3;
+}

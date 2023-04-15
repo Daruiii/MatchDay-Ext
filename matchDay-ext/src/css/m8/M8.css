@@ -1,0 +1,15 @@
+.M8 {
+    background-color: #373737;
+    color: #20243c;
+    height: 92.8%;
+    width: 100%;
+    left : 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    }
+    .M8 .team-header {
+        border-bottom: 1px solid #bdf903;
+        }

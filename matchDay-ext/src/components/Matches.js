@@ -28,7 +28,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
         const dataError = { error: "" };
         
         // test api request is ok 
-        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameValorant}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
                 // if data return an error, return an error 
@@ -143,7 +143,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
         const dataError = { error: "" };
         
         // test api request is ok 
-        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameValorant}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
                 // if data return an error, return an error 
@@ -269,7 +269,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
         const dataError = { error: "" };
         
         // test api request is ok 
-        const test = await fetch(`https://api.pandascore.co/teams/${teamNameLol}/matches?sort=&page=number=1&size=50&per_page=1`, options)
+        const test = await fetch(`https://api.pandascore.co/teams/${teamNameValorant}/matches?sort=&page=number=1&size=50&per_page=1`, options)
             .then(response => response.json())
             .then(data => {
                 // if data return an error, return an error 
