@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7195d5d3.css",
-    "main.js": "/static/js/main.eeb8ff65.js",
+    "main.js": "/static/js/main.e0686124.js",
     "static/media/bg-vitality2.gif": "/static/media/bg-vitality2.9e77515fd9b9da94939c.gif",
     "static/media/SLY.png": "/static/media/SLY.bbb72c459454012974d6.png",
     "static/media/twitter.png": "/static/media/twitter.b413b75b86f226240110.png",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.7195d5d3.css",
-    "static/js/main.eeb8ff65.js"
+    "static/js/main.e0686124.js"
   ]
 }
