@@ -7,38 +7,11 @@ import M8 from './img/teams_logo/M8.png'
 import ExtLogo from './img/teams_logo/manette.png'
 import Settings from './img/settings.png'
 import Bds from './img/teams_logo/BDS.png'
+import FavoriteTeams from './ConfigFavTeam'
 
 export default function Navbar() {
 
-        
-        /*global chrome*/
-        chrome.storage.sync.get(['favoritesTeams'], function (result) {
-            if (result.favoritesTeams.includes("Vitality")) {
-                setVita(true);
-            }
-            if (result.favoritesTeams.includes("Karmine")) {
-                setKarm(true);
-            }
-            if (result.favoritesTeams.includes("Solary")) {
-                setSol(true);
-            }
-            if (result.favoritesTeams.includes("BDS")) {
-                setBds(true);
-            }
-            if (result.favoritesTeams.includes("Gentle Mates")) {
-                setGm(true);
-            }
-    });
-
-    const [vita, setVita] = useState(false);
-
-    const [karm, setKarm] = useState(false);
-
-    const [sol, setSol] = useState(false);
-
-    const [bds, setBds] = useState(false);
-
-    const [m8, setGm] = useState(false);
+    const {vita, karm, sol, bds, m8} = FavoriteTeams()
 
     function rotateCenter() {
         document.getElementById("ExtSettings").classList.toggle("rotate-center");

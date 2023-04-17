@@ -10,7 +10,7 @@ export default function Upcoming() {
                 <h5>HEURE</h5>
             </div>
             <div className="my_events">
-                <MatchesUpcoming teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} teamValoGC={"karmine-corp-female"} />
+                <MatchesUpcoming teamName={"karmine"} />
             </div>
         </div>
 }

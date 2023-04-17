@@ -15,41 +15,47 @@ chrome.storage.sync.get(['token'], function (result) {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 
-const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC }) => {
+const TournamentRunningsStandings = ({ teamName }) => {
 
     const [tournamentsStandings, setTournamentsStandings] = useState([]);
     const [tournamentsIDplusName, setTournamentsIDplusName] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
     const getData = async () => {
-        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC];
         const allIdsPlusNames = [{ id: "", name: "", date: "", status: "" }];
         const allTournamentsStandings = [{ name: "", standings: "", date: "", status: "" }];
         const lastTournament = [{ name: "", standings: "", currentTeam: "" }];
         const dataError = { error: "" };
-
-        // test api request is ok 
-        const test = await fetch(`https://api.pandascore.co/teams/${teamNameValorant}/matches?sort=&page=number=1&size=50&per_page=1`, options)
-            .then(response => response.json())
-            .then(data => {
-                // if data return an error, return an error 
+        const slugOfTheTeam = [];
+        const getAllSlugFromTheTeam = await fetch('https://api.pandascore.co/teams?search[slug]=' + teamName, options)
+            .then((res) => res.json())
+            .then((data) => {
                 if (data.error) {
                     dataError.error = data.error;
                     setError(dataError.error);
                     setLoaded(true);
                 }
+                data.forEach((team) => {
+                    slugOfTheTeam.push(team.slug);
+                    console.log("slugOfTheTeam: ", slugOfTheTeam);
+                }
+                )
+                setLoaded(true);
             })
-        await Promise.all(test).catch(err => {
+            .catch(err => {
+                console.log("dataError: ", dataError.error);
+            });
 
-        });
-
+        await Promise.all(getAllSlugFromTheTeam).catch(err => {
+            console.log("dataError: ", dataError.error);
+        }
+        );
         if (dataError.error !== "") {
             setError(dataError.error);
             setLoaded(true);
             return;
         }
-
-        const requests = allProps
+        const requests = slugOfTheTeam
             .filter(prop => prop !== "")
             .map(prop =>
                 // veruify if fetch request is ok and if the tournament id is not undefined 
@@ -88,30 +94,12 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
                     }
                     )
             )
-
         await Promise.all(requests);
         if (allTournamentsStandings.length > 1) {
             lastTournament[0] = allTournamentsStandings?.sort((a, b) => (a.date > b.date) ? 1 : -1).filter((match) => match.status === "not_started" || match.status === "running")[0];
             if (lastTournament[0] === undefined) {
                 lastTournament[0] = allTournamentsStandings?.sort((a, b) => (a.date > b.date) ? 1 : -1).filter((match) => match.status === "finished")[0];
             }
-            if (lastTournament[0].standings !== dataError.error) {
-                if (lastTournament[0].standings?.map((standing) => standing.team.slug).includes(teamNameLol)) {
-                    lastTournament[0].currentTeam = teamNameLol;
-                }
-                else if (lastTournament[0].standings?.map((standing) => standing.team.slug).includes(teamNameLol2)) {
-                    lastTournament[0].currentTeam = teamNameLol2;
-                }
-                else if (lastTournament[0].standings?.map((standing) => standing.team.slug).includes(teamNameValorant)) {
-                    lastTournament[0].currentTeam = teamNameValorant;
-                }
-                else if (lastTournament[0].standings?.map((standing) => standing.team.slug).includes(teamNameCsGo)) {
-                    lastTournament[0].currentTeam = teamNameCsGo;
-                }
-                else if (lastTournament[0].standings?.map((standing) => standing.team.slug).includes(teamNameRL)) {
-                    lastTournament[0].currentTeam = teamNameRL;
-                }
-        }
         }
         await Promise.all(lastTournament).catch(err => {
             setError(err);
@@ -138,7 +126,6 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
     } else if (!loaded) {
         return <div>Loading...</div>;
     } else {
-
         return (<>
             {tournamentsStandings ? tournamentsStandings.map((tournament, index) => {
                 if (tournament.standings !== "Record not found" && tournament.standings !== "") {
@@ -147,7 +134,7 @@ const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValora
                             <h3 className="tournament-name">{tournament.name}</h3>
                             <div className="tournament-standings">
                                 {tournament.standings?.map((standing, index) => {
-                                    if (standing.team.slug === tournament.currentTeam) {
+                                    if (standing.team.slug.includes(teamName)) {
                                         return (
                                             <div key={index} className="tournament-standings-current-team">
                                                 <h5 className="team-rank"> {standing.rank} </h5>

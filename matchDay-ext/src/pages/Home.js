@@ -6,48 +6,22 @@ import email from '../img/footer-logo/basics/email.png';
 import twitter from '../img/footer-logo/basics/twitter.png';
 import { useState } from 'react';
 import SimpleSlider from '../components/Slide';
+import FavoriteTeams from '../ConfigFavTeam'
 
 export default function Home() {
 
-            /*global chrome*/
-            chrome.storage.sync.get(['favoritesTeams'], function (result) {
-                if (result.favoritesTeams.includes("Vitality")) {
-                    setVita(true);
-                }
-                if (result.favoritesTeams.includes("Karmine")) {
-                    setKarm(true);
-                }
-                if (result.favoritesTeams.includes("Solary")) {
-                    setSol(true);
-                }
-                if (result.favoritesTeams.includes("BDS")) {
-                    setBds(true);
-                }
-                if (result.favoritesTeams.includes("Gentle Mates")) {
-                    setGm(true);
-                }
-        });
-    
-        const [vita, setVita] = useState(false);
-    
-        const [karm, setKarm] = useState(false);
-    
-        const [sol, setSol] = useState(false);
-
-        const [bds, setBds] = useState(false);
-
-        const [gm, setGm] = useState(false);
+    const {vita, karm, sol, bds, m8} = FavoriteTeams()
 
     return <div className="home">
         <h1 className="top_texte">Prochains matchs :</h1>
         <div className="events">
         <div className="my_events">
         {vita || karm || sol || bds ? "" : <h1 className="top_texte">Aucun matchs à venir</h1>}
-        {vita ? <NextMatch teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} teamValoGC={""}/> : ""}
-        {karm ? <NextMatch teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} teamValoGC={"karmine-corp-female"}/> : ""}
-        {sol ? <NextMatch teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} teamValoGC={""}/> : ""}   
-        {bds ? <NextMatch teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} teamValoGC={""}/> : ""}
-        {gm ? <NextMatch teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} teamValoGC={""}/> : ""}
+        {vita ? <NextMatch teamName={"vitality"} /> : ""}
+        {karm ? <NextMatch teamName={"karmine"} /> : ""}
+        {sol ? <NextMatch teamName={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} teamValoGC={""}/> : ""}   
+        {bds ? <NextMatch teamName={"bds"} /> : ""}
+        {m8 ? <NextMatch teamName={"gentle-mates"} /> : ""}
         </div>   
         <div className="standings-tournaments">
             <SimpleSlider />

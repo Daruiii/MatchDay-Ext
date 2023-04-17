@@ -5,6 +5,7 @@ import "../css/slide.css";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TournamentRunningsStandings from "./Tournaments";
+import FavoriteTeams from '../ConfigFavTeam'
 
 const SimpleSlider = () => {
     const settings = {
@@ -17,56 +18,29 @@ const SimpleSlider = () => {
         autoplaySpeed: 5000,
         cssEase: "linear"
     };
-    /*global chrome*/
-    chrome.storage.sync.get(['favoritesTeams'], function (result) {
-        if (result.favoritesTeams.includes("Vitality")) {
-            setVita(true);
-        }
-        if (result.favoritesTeams.includes("Karmine")) {
-            setKarm(true);
-        }
-        if (result.favoritesTeams.includes("Solary")) {
-            setSol(true);
-        }
-        if (result.favoritesTeams.includes("BDS")) {
-            setBds(true);
-        }
-        if (result.favoritesTeams.includes("Gentle Mates")) {
-            setGm(true);
-        }
-});
-
-const [vita, setVita] = useState(false);
-
-const [karm, setKarm] = useState(false);
-
-const [sol, setSol] = useState(false);
-
-const [bds, setBds] = useState(false);
-
-const [gm, setGm] = useState(false);
+    const {vita, karm, sol, bds, m8} = FavoriteTeams()
 
     return (
         <Slider {...settings} className="slide">
             {vita ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} teamValoGC={""} />
+                    <TournamentRunningsStandings teamName={"vitality"} />
                 </div> : ""}
             {karm ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} teamValoGC={"karmine-corp-female"} />
+                    <TournamentRunningsStandings teamName={"karmine-corp"}  />
                 </div> : ""}
             {sol ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} teamValoGC={""} />
+                    <TournamentRunningsStandings teamName={"solary"}  />
                 </div> : ""}
             {bds ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} teamValoGC={""} />
+                    <TournamentRunningsStandings teamName={"bds"}  />
                 </div> : ""}
-            {gm ?
+            {m8 ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} teamValoGC={""} />
+                    <TournamentRunningsStandings teamName={"gentle-mates"}  />
                 </div> : ""}
         </Slider>
     );
