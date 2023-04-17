@@ -15,12 +15,13 @@ const options = {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 
-const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
+const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC }) => {
     const [dataLol, setData] = useState();
     const [dataLol2, setDataLol2] = useState();
     const [dataValorant, setDataValorant] = useState();
     const [dataCsGo, setDataCsGo] = useState();
     const [dataRL, setDataRL] = useState();
+    const [dataValoGC, setDataValoGC] = useState();
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
@@ -47,7 +48,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                 setLoaded(true);
                 return;
             }
-        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
+        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC];
         allProps.forEach((prop) => {
             if (prop) {
                 fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=20', options)
@@ -63,6 +64,9 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                             setDataCsGo(data);
                         } else if (prop === teamNameRL) {
                             setDataRL(data);
+                        }
+                        else if (prop === teamValoGC) {
+                            setDataValoGC(data);
                         }
                         setLoaded(true);
                     })
@@ -80,7 +84,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
 
     const mapData = () => {
         const allData = [];
-        const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL];
+        const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL, dataValoGC];
         allProps.forEach((prop) => {
             if (prop) {
                 prop.forEach((match) => {
@@ -108,7 +112,7 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
                 mapData().sort((a, b) => (a.begin_at > b.begin_at) ? 1 : -1).map((match) => {
                     return (
                         <div key={match.id} className="events_content">
-                            <h5 className="events_content_competition" title={match.videogame.name}>{match.league.name}</h5>
+                            <h5 className="events_content_competition" title={match.videogame.name + " - " + match.serie.full_name}>{match.league.name}</h5>
                             <div className="events_content_match">
                                 <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
                                 <h5 className="events_content_match_vs">VS</h5>
@@ -129,12 +133,13 @@ const MatchesUpcoming = ({ teamNameLol, teamNameLol2, teamNameValorant, teamName
 
 }
 
-const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
+const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC }) => {
     const [dataLol, setData] = useState();
     const [dataLol2, setDataLol2] = useState();
     const [dataValorant, setDataValorant] = useState();
     const [dataCsGo, setDataCsGo] = useState();
     const [dataRL, setDataRL] = useState();
+    const [dataValoGC, setDataValoGC] = useState();
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
@@ -162,7 +167,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                 setLoaded(true);
                 return;
             }
-        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
+        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC];
         allProps.forEach((prop) => {
             if (prop) {
                 fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=20', options)
@@ -178,6 +183,9 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                             setDataCsGo(data);
                         } else if (prop === teamNameRL) {
                             setDataRL(data);
+                        }
+                        else if (prop === teamValoGC) {
+                            setDataValoGC(data);
                         }
                         setLoaded(true);
                     })
@@ -195,7 +203,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
 
     const mapData = () => {
         const allData = [];
-        const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL];
+        const allProps = [dataLol, dataLol2, dataValorant, dataCsGo, dataRL, dataValoGC];
         allProps.forEach((prop) => {
             if (prop) {
                 prop.forEach((match) => {
@@ -219,7 +227,7 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
                 mapData().sort((a, b) => (a.begin_at < b.begin_at) ? 1 : -1).map((match) => {
                     return (
                         <div key={match.id} className="events_content">
-                            <h5 className="events_content_competition" title={match.videogame.name}>{match.league.name}</h5>
+                            <h5 className="events_content_competition" title={match.videogame.name + " - " + match.serie.full_name}>{match.league.name}</h5>
                             <div className="events_content_match">
                                 <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
                                 <h5 className="events_content_match_vs">VS</h5>
@@ -255,12 +263,13 @@ const PastMatches = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo
 
 }
 
-const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
+const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC }) => {
     const [dataLol, setData] = useState();
     const [dataLol2, setDataLol2] = useState();
     const [dataValorant, setDataValorant] = useState();
     const [dataCsGo, setDataCsGo] = useState();
     const [dataRL, setDataRL] = useState();
+    const [dataValoGC, setDataValoGC] = useState();
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
@@ -289,7 +298,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                 return;
             }
 
-        const allProps = [ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL ];
+        const allProps = [ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC ];
         allProps.forEach((prop) => {
             if (prop) {
                 fetch('https://api.pandascore.co/teams/' + prop + '/matches?sort=&page=number=1&size=50&per_page=10', options)
@@ -305,6 +314,9 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
                         setDataCsGo(data);
                     } else if (prop === teamNameRL) {
                         setDataRL(data);
+                    }
+                    else if (prop === teamValoGC) {
+                        setDataValoGC(data);
                     }
                     setLoaded(true);
                 })
@@ -322,7 +334,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
 
     const mapData = () => {
         const allData = [];
-        const allProps = [ dataLol, dataLol2, dataValorant, dataCsGo, dataRL ];
+        const allProps = [ dataLol, dataLol2, dataValorant, dataCsGo, dataRL, dataValoGC ];
         allProps.forEach((prop) => {
             if (prop) {
                 prop.forEach((match) => {
@@ -348,7 +360,7 @@ const NextMatch = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, 
             {
                 mapData() ?
                     <div key={mapData().id} className="events_content">
-                        <h5 className="events_content_competition" title={mapData().videogame.name}>{mapData().league.name}</h5>
+                        <h5 className="events_content_competition" title={mapData().videogame.name + " - " + mapData().serie.full_name}>{mapData().league.name}</h5>
                         <div className="events_content_match">
                             <img src={mapData().opponents[0]?.opponent.image_url} alt={mapData().opponents[0]?.opponent.name} width="20" title={mapData().opponents[0]?.opponent.name} className='team-logo' />
                             <h5 className="events_content_match_vs">VS</h5>

@@ -50,23 +50,23 @@ const [gm, setGm] = useState(false);
         <Slider {...settings} className="slide">
             {vita ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} />
+                    <TournamentRunningsStandings teamNameLol={"vitality"} teamNameLol2={"vitality-bee"} teamNameValorant={"team-vitality-valorant"} teamNameCsGo={"vitality-cs-go"} teamNameRL={"vitality-rl"} teamValoGC={""} />
                 </div> : ""}
             {karm ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} />
+                    <TournamentRunningsStandings teamNameLol={"karmine-corp"} teamNameLol2={""} teamNameValorant={"karmine-corp-valorant"} teamNameCsGo={""} teamNameRL={"karmine-corp-rl"} teamValoGC={"karmine-corp-female"} />
                 </div> : ""}
             {sol ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} />
+                    <TournamentRunningsStandings teamNameLol={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} teamValoGC={""} />
                 </div> : ""}
             {bds ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} />
+                    <TournamentRunningsStandings teamNameLol={"bds"} teamNameLol2={"bds-academy"} teamNameValorant={"team-bds-valorant"} teamNameCsGo={""} teamNameRL={"team-bds"} teamValoGC={""} />
                 </div> : ""}
             {gm ?
                 <div className="slide-each">
-                    <TournamentRunningsStandings teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} />
+                    <TournamentRunningsStandings teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} teamValoGC={""} />
                 </div> : ""}
         </Slider>
     );

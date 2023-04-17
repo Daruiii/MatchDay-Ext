@@ -10,7 +10,7 @@ export default function Past() {
         <h5>DATE</h5>
     </div>
     <div className="my_events">
-        <PastMatches teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} />
+        <PastMatches teamNameLol={""} teamNameLol2={""} teamNameValorant={"gentle-mates"} teamNameCsGo={""} teamNameRL={""} teamValoGC={""} />
     </div>
 </div>
 }

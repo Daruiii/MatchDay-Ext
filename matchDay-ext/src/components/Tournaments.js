@@ -15,14 +15,14 @@ chrome.storage.sync.get(['token'], function (result) {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 
-const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL }) => {
+const TournamentRunningsStandings = ({ teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC }) => {
 
     const [tournamentsStandings, setTournamentsStandings] = useState([]);
     const [tournamentsIDplusName, setTournamentsIDplusName] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
     const getData = async () => {
-        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL];
+        const allProps = [teamNameLol, teamNameLol2, teamNameValorant, teamNameCsGo, teamNameRL, teamValoGC];
         const allIdsPlusNames = [{ id: "", name: "", date: "", status: "" }];
         const allTournamentsStandings = [{ name: "", standings: "", date: "", status: "" }];
         const lastTournament = [{ name: "", standings: "", currentTeam: "" }];
