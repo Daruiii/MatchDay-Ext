@@ -15,6 +15,19 @@ chrome.storage.sync.get(['token'], function (result) {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 
+const optionsRefresh = {
+    method: 'PUT',
+    headers: {
+        accept: 'application/x-www-form-urlencoded',
+        authorization: 'Bearer '
+    }
+};
+/*global chrome*/
+chrome.storage.sync.get(['token'], function (result) {
+console.log('Value currently is ' + result.token);
+optionsRefresh.headers.authorization = 'Bearer ' + result.token;
+});
+
 const MatchesUpcoming = ({ teamName }) => {
     const [data, setData] = useState([]);
     const [loaded, setLoaded] = useState(false);
@@ -102,7 +115,27 @@ const MatchesUpcoming = ({ teamName }) => {
     }
 
     const now = new Date(new Date().setHours(new Date().getHours() + 2)).toISOString().slice(11, 16);
+    const refresh = async () => {
+        const tokenrefresh = await fetch('https://registration.pandascore.co/dashboard_api/users/me/access_token', optionsRefresh)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data: ", data);
+                chrome.storage.sync.set({ token: data.data.token }, function () {
+                    console.log('Value is set to ' + data.data.token);
+                });
+            })
+            .catch(err => {
+                console.log("dataError: ", err);
+            });
+        await Promise.all(tokenrefresh).catch(err => {
+            console.log("dataError: ", err);
+        }
+        );
+        console.log("refresh");
+        window.close();
+    }
 
+    if (error === "Too many requests") refresh();
     if (error) return (<>
         <div className="error">
             <h2> {error} </h2>
@@ -126,7 +159,7 @@ const MatchesUpcoming = ({ teamName }) => {
                             {match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{match.begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
                             {
                                 // if now is under mapData().begin_at and mapData().begin_at + 2h then match is in progress + is the same day
-                                match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={match.streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
+                                match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 3)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={match.streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(match.begin_at).setHours(new Date(match.begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
                             }
                         </div>
                     )
@@ -222,6 +255,27 @@ const PastMatches = ({ teamName }) => {
         }
         return allData.filter((match) => match.status === "finished");
     }
+    const refresh = async () => {
+        const tokenrefresh = await fetch('https://registration.pandascore.co/dashboard_api/users/me/access_token', optionsRefresh)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data: ", data);
+                chrome.storage.sync.set({ token: data.data.token }, function () {
+                    console.log('Value is set to ' + data.data.token);
+                });
+            })
+            .catch(err => {
+                console.log("dataError: ", err);
+            });
+        await Promise.all(tokenrefresh).catch(err => {
+            console.log("dataError: ", err);
+        }
+        );
+        console.log("refresh");
+        window.close();
+    }
+
+    if (error === "Too many requests") refresh();
     if (error) return (<>
         <div className="error">
             <h2> {error} </h2>
@@ -266,19 +320,6 @@ const PastMatches = ({ teamName }) => {
         </>
     );
 }
-
-const optionsRefresh = {
-    method: 'PUT',
-    headers: {
-        accept: 'application/x-www-form-urlencoded',
-        authorization: 'Bearer '
-    }
-};
-/*global chrome*/
-chrome.storage.sync.get(['token'], function (result) {
-console.log('Value currently is ' + result.token);
-optionsRefresh.headers.authorization = 'Bearer ' + result.token;
-});
 
 const NextMatch = ({ teamName }) => {
     const [data, setData] = useState();
@@ -413,7 +454,7 @@ const NextMatch = ({ teamName }) => {
                             {mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{mapData().begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
                             {
                                 // if now is under mapData().begin_at and mapData().begin_at + 2h then match is in progress + is the same day
-                                mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={mapData().streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
+                                mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') && new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16) <= now && now <= new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 3)).toISOString().slice(11, 16) ? <a className='events_content_hour' href={mapData().streams_list[0]?.raw_url} target="_blank" rel="noreferrer"> <h5 className="">en cours</h5></a> : <h5 className="events_content_hour">{new Date(new Date(mapData().begin_at).setHours(new Date(mapData().begin_at).getHours() + 2)).toISOString().slice(11, 16)}</h5>
                             }
                         </div> : <p>pas de matchs à venir</p>
                 }

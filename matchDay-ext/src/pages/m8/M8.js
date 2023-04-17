@@ -12,6 +12,7 @@ import Footer from '../../components/Footer'
 import instaVIT from '../../img/footer-logo/vitality/instaVIT.png'
 import twitterVIT from '../../img/footer-logo/vitality/twitterVIT.png'
 import tiktok from '../../img/footer-logo/basics/tiktok.png'
+import twitchVIT from '../../img/footer-logo/vitality/twitchVIT.png'
 import youtubeVIT from '../../img/footer-logo/vitality/youtubeVIT.png'
 
 export default function M8() {
@@ -30,11 +31,11 @@ export default function M8() {
         <Footer props={{
             logo1: twitterVIT,
             logo2: youtubeVIT,
-            logo3: tiktok,
+            logo3: twitchVIT,
             logo4: instaVIT,
             link1: "https://twitter.com/gentlemates",
             link2: "https://www.youtube.com/@teamgentlemates",
-            link3: "https://www.tiktok.com/@gentlemates?lang=fr",
+            link3: "https://www.twitch.tv/gotaga",
             link4: "https://www.instagram.com/gentlemates/",
             linkShop: "https://gentlemates.com/fr/shop/",
             nameShop: "M8-SHOP.COM"
