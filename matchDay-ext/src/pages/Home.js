@@ -16,10 +16,10 @@ export default function Home() {
         <h1 className="top_texte">Prochains matchs :</h1>
         <div className="events">
         <div className="my_events">
-        {vita || karm || sol || bds ? "" : <h1 className="top_texte">Aucun matchs à venir</h1>}
+        {vita || karm || sol || bds || m8 ? "" : <h1 className="top_texte">Aucun matchs à venir</h1>}
         {vita ? <NextMatch teamName={"vitality"} /> : ""}
         {karm ? <NextMatch teamName={"karmine"} /> : ""}
-        {sol ? <NextMatch teamName={"solary"} teamNameLol2={""} teamNameValorant={"solary-valorant"} teamNameCsGo={""} teamNameRL={"solary-rl"} teamValoGC={""}/> : ""}   
+        {sol ? <NextMatch teamName={"solary"} /> : ""}
         {bds ? <NextMatch teamName={"bds"} /> : ""}
         {m8 ? <NextMatch teamName={"gentle-mates"} /> : ""}
         </div>   
