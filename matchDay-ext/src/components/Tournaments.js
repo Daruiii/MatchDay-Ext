@@ -37,7 +37,6 @@ const TournamentRunningsStandings = ({ teamName }) => {
                 }
                 data.forEach((team) => {
                     slugOfTheTeam.push(team.slug);
-                    console.log("slugOfTheTeam: ", slugOfTheTeam);
                 }
                 )
                 setLoaded(true);

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import "../css/all-teams/events.css"
+import { PopupRoster } from "./Popup.js";
 
 const options = {
     method: 'GET',
     headers: {
-        // account api key 1 : lAB9KFwFOoCKffaEatGjngrAiXlWHYVIJCjIb9Yql_lV-RDwOS8
-        // account api key 2 : 4mS96b9jPR7yltpub_ljRk70SkiN6te68vKqxlxNWdtwAf8_jLQ
         accept: 'application/json',
         authorization: 'Bearer '
     }
@@ -24,9 +23,21 @@ const optionsRefresh = {
 };
 /*global chrome*/
 chrome.storage.sync.get(['token'], function (result) {
-console.log('Value currently is ' + result.token);
 optionsRefresh.headers.authorization = 'Bearer ' + result.token;
 });
+
+// function for open popup
+const openPopup = (teamId) => {
+    // console.log("teamId: ", teamId);
+    // const popup = new PopupRoster(teamId);
+    // popup.render();
+}
+
+// function for destroy popup
+const destroyPopup = () => {
+    const popup = document.getElementById("popup");
+    popup.parentNode.removeChild(popup);
+}
 
 const MatchesUpcoming = ({ teamName }) => {
     const [data, setData] = useState([]);
@@ -46,7 +57,6 @@ const MatchesUpcoming = ({ teamName }) => {
                 }
                 data.forEach((team) => {
                     slugOfTheTeam.push(team.slug);
-                    console.log("slugOfTheTeam: ", slugOfTheTeam);
                 }
                 )
             })
@@ -151,9 +161,9 @@ const MatchesUpcoming = ({ teamName }) => {
                         <div key={match.id} className="events_content">
                             <h5 className="events_content_competition" title={match.videogame.name + " - " + match.serie.full_name}>{match.league.name}</h5>
                             <div className="events_content_match">
-                                <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
+                                <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' onClick={() => openPopup(match.opponents[0]?.opponent.id)} />
                                 <h5 className="events_content_match_vs">VS</h5>
-                                <img src={match.opponents[1]?.opponent.image_url} alt={match.opponents[1]?.opponent.name} width="20" title={match.opponents[1]?.opponent.name} className='team-logo' />
+                                <img src={match.opponents[1]?.opponent.image_url} alt={match.opponents[1]?.opponent.name} width="20" title={match.opponents[1]?.opponent.name} className='team-logo' onClick={() => openPopup(match.opponents[1]?.opponent.id)} />
                             </div>
                             {/* date + 1 pour verifier si le match est demain */}
                             {match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : match.begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{match.begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
@@ -189,7 +199,6 @@ const PastMatches = ({ teamName }) => {
                 }
                 data.forEach((team) => {
                     slugOfTheTeam.push(team.slug);
-                    console.log("slugOfTheTeam: ", slugOfTheTeam);
                 }
                 )
             })
@@ -291,9 +300,9 @@ const PastMatches = ({ teamName }) => {
                         <div key={match.id} className="events_content">
                             <h5 className="events_content_competition" title={match.videogame.name + " - " + match.serie.full_name}>{match.league.name}</h5>
                             <div className="events_content_match">
-                                <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' />
+                                <img src={match.opponents[0]?.opponent.image_url} alt={match.opponents[0]?.opponent.name} width="20" title={match.opponents[0]?.opponent.name} className='team-logo' onClick={() => openPopup(match.opponents[0]?.opponent.id)} />
                                 <h5 className="events_content_match_vs">VS</h5>
-                                <img src={match.opponents[1]?.opponent.image_url} alt={match.opponents[1]?.opponent.name} width="20" title={match.opponents[1]?.opponent.name} className='team-logo' />
+                                <img src={match.opponents[1]?.opponent.image_url} alt={match.opponents[1]?.opponent.name} width="20" title={match.opponents[1]?.opponent.name} className='team-logo' onClick={() => openPopup(match.opponents[1]?.opponent.id)} />
                             </div>
                             <div className="events_content_score">
                                 {match.winner?.slug.includes(teamName) ?
@@ -339,7 +348,6 @@ const NextMatch = ({ teamName }) => {
                     }
                     data.forEach((team) => {
                         slugOfTheTeam.push(team.slug);
-                        console.log("slugOfTheTeam: ", slugOfTheTeam);
                     }
                     )
                     setLoaded(true);
@@ -446,9 +454,9 @@ const NextMatch = ({ teamName }) => {
                         <div key={mapData().id} className="events_content">
                             <h5 className="events_content_competition" title={mapData().videogame.name + " - " + mapData().serie.full_name}>{mapData().league.name}</h5>
                             <div className="events_content_match">
-                                <img src={mapData().opponents[0]?.opponent.image_url} alt={mapData().opponents[0]?.opponent.name} width="20" title={mapData().opponents[0]?.opponent.name} className='team-logo' />
+                                <img src={mapData().opponents[0]?.opponent.image_url} alt={mapData().opponents[0]?.opponent.name} width="20" title={mapData().opponents[0]?.opponent.name} className='team-logo' onClick={() => openPopup(mapData().opponents[0]?.opponent.id)} />
                                 <h5 className="events_content_match_vs">VS</h5>
-                                <img src={mapData().opponents[1]?.opponent.image_url} alt={mapData().opponents[1]?.opponent.name} width="20" title={mapData().opponents[1]?.opponent.name} className='team-logo' />
+                                <img src={mapData().opponents[1]?.opponent.image_url} alt={mapData().opponents[1]?.opponent.name} width="20" title={mapData().opponents[1]?.opponent.name} className='team-logo' onClick={() => openPopup(mapData().opponents[1]?.opponent.id)} />
                             </div>
                             {/* Date + 1 pour vérifier si date = demain */}
                             {mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date().toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Aujourd'hui</h5> : mapData().begin_at?.slice(0, 10).replace(/-/g, '/') === new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10).replace(/-/g, '/') ? <h5 className="events_content_date">Demain</h5> : <h5 className="events_content_date">{mapData().begin_at?.slice(0, 10).replace(/-/g, '/')}</h5>}
