@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.7195d5d3.css",
+    "main.css": "/static/css/main.e8edc137.css",
     "main.js": "/static/js/main.e0686124.js",
     "static/media/bg-vitality2.gif": "/static/media/bg-vitality2.9e77515fd9b9da94939c.gif",
     "static/media/SLY.png": "/static/media/SLY.bbb72c459454012974d6.png",
@@ -25,7 +25,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.7195d5d3.css",
+    "static/css/main.e8edc137.css",
     "static/js/main.e0686124.js"
   ]
 }
