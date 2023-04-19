@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.43e0b024.css",
-    "main.js": "/static/js/main.4ed28b2e.js",
+    "main.css": "/static/css/main.58ddfbc6.css",
+    "main.js": "/static/js/main.8c5b9ec6.js",
     "static/media/bg-vitality2.gif": "/static/media/bg-vitality2.9e77515fd9b9da94939c.gif",
     "static/media/SLY.png": "/static/media/SLY.bbb72c459454012974d6.png",
     "static/media/twitter.png": "/static/media/twitter.b413b75b86f226240110.png",
@@ -25,7 +25,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.43e0b024.css",
-    "static/js/main.4ed28b2e.js"
+    "static/css/main.58ddfbc6.css",
+    "static/js/main.8c5b9ec6.js"
   ]
 }

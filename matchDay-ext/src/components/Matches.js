@@ -28,15 +28,8 @@ optionsRefresh.headers.authorization = 'Bearer ' + result.token;
 
 // function for open popup
 const openPopup = (teamId) => {
-    // console.log("teamId: ", teamId);
-    // const popup = new PopupRoster(teamId);
-    // popup.render();
-}
-
-// function for destroy popup
-const destroyPopup = () => {
-    const popup = document.getElementById("popup");
-    popup.parentNode.removeChild(popup);
+    // create Popup component and add it to the body
+    const popup = PopupRoster(teamId);
 }
 
 const MatchesUpcoming = ({ teamName }) => {
