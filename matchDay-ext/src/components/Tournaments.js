@@ -61,7 +61,7 @@ const TournamentRunningsStandings = ({ teamName }) => {
                 fetch(`https://api.pandascore.co/teams/${prop}/matches?sort=&page=number=1&size=50&per_page=1`, options)
                     .then(response => response.json())
                     .then(data => {
-                        if (data[0].tournament_id !== undefined) {
+                        if (data[0].tournament_id !== undefined && data[0].videogame.name !== "Dota 2") {
                             allIdsPlusNames.push({ id: data[0].tournament_id, name: data[0].league.name + " " + data[0].serie.full_name + " " + data[0].tournament.name, date: data[0].begin_at, status: data[0].status });
                         }
                     }).catch(err => {

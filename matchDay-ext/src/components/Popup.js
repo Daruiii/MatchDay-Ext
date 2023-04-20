@@ -69,9 +69,11 @@ const PopupRoster = async (teamId) => {
         ` +
         teamData[0].players?.map((player) => {
             return `
+            <hr>
             <div class="player">
+                <p>${player.first_name} "${player.name}" ${player.last_name}  ${player.nationality ? `(${player.nationality})` : ''} </p>
                 <img src="${player.image_url? player.image_url : profilePicture}" alt="player">
-                <p>${player.first_name} "${player.name}" ${player.last_name} - ${player.nationality}</p>
+                ${player.role ? `<p>Rôle: ${player.role}</p>` : ''}
             </div>
             `
         }).join('')
