@@ -18,7 +18,7 @@ export default function Karmine() {
 
     return <div className="KARMINE">
         <div className="team-header">
-        <img src={KarmineImg} alt="Karmine" width="50" className='team-logo' />
+        <img src={KarmineImg} alt="Karmine" width="50" className='logo' />
         </div>
         <NavbarEvents />
         <div className="container">

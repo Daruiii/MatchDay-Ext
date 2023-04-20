@@ -18,7 +18,7 @@ export default function Vitality() {
 
     return <div className="VITALITY">
         <div className="team-header">
-        <img src={VitalityImg} alt="Vitality" width="50" className='team-logo' />
+        <img src={VitalityImg} alt="Vitality" width="50" className='logo' />
         </div>
         <NavbarEvents />
         <div className="container">

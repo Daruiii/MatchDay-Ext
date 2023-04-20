@@ -18,7 +18,7 @@ export default function Bds() {
 
     return <div className="BDS">
         <div className="team-header">
-        <img src={BdsImg} alt="BDS" width="50" className='team-logo' />
+        <img src={BdsImg} alt="BDS" width="50" className='logo' />
         </div>
         <NavbarEvents />
         <div className="container">

@@ -18,7 +18,7 @@ export default function Solary() {
 
     return <div className="SOLARY">
         <div className="team-header">
-        <img src={SolaryImg} alt="Solary" width="50" className='team-logo' />
+        <img src={SolaryImg} alt="Solary" width="50" className='logo' />
         </div>
         <NavbarEvents />
         <div className="container">

@@ -19,7 +19,7 @@ export default function M8() {
 
     return <div className="M8">
         <div className="team-header">
-        <img src={M8Img} alt="M8" width="50" className='team-logo' />
+        <img src={M8Img} alt="M8" width="50" className='logo' />
         </div>
         <NavbarEvents />
         <div className="container">

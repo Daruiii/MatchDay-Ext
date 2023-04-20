@@ -71,6 +71,11 @@ body {
     margin-top: 1rem;
 }
 
+.logo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* --- ANIMATIONS --- */
 /* 1 */
 .rotate-center {

@@ -15,11 +15,12 @@
     left: 50%;
     width: 400px;
     height: 500px;
-    background-color: #132234;
+    background: rgb(12,12,111);
+background: radial-gradient(circle, rgba(12,12,111,1) 0%, rgba(12,11,108,1) 6%, rgba(2,0,36,1) 75%);
     border-radius: 3px;
     transform: translate(-50%, -50%);
     z-index: 101;
-    border: 1px solid #ffffff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     color: #ffffff;
 }
 
@@ -46,7 +47,7 @@
 }
 
 .roster-container::-webkit-scrollbar {
-    width: 3px;
+    width: 1px;
 }
 
 .roster-container::-webkit-scrollbar-track {
@@ -54,7 +55,7 @@
 }
 
 .roster-container::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #000000;
 }
 
 .roster-container::-webkit-scrollbar-thumb:hover {
