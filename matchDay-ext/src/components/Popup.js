@@ -15,11 +15,12 @@ chrome.storage.sync.get(['token'], function (result) {
     options.headers.authorization = 'Bearer ' + result.token;
 });
 // function for destroy popup
-const destroyPopup = () => {
-    const popupBg = document.getElementById("popup-bg");
+const destroyPopup = async () => {
     const popup = document.getElementById("popup");
-    popupBg.parentNode.removeChild(popupBg);
-    popup.parentNode.removeChild(popup);
+    popup.id = "popup-destroy";
+    await new Promise(r => setTimeout(r, 300));
+    const allPopup = document.getElementById("all-popup");
+    allPopup.parentNode.removeChild(allPopup);
 }
 
 const PopupRoster = async (teamId) => {
@@ -35,7 +36,8 @@ const PopupRoster = async (teamId) => {
 
         console.log(teamData);
         console.log(teamData[0].players);
-
+    const allPopup = document.createElement("div");
+    allPopup.id = "all-popup";
     const popupBg = document.createElement("div");
     popupBg.id = "popup-bg";
     const popup = document.createElement("div");
@@ -81,9 +83,9 @@ const PopupRoster = async (teamId) => {
         </div>
     `;
     }
-
-    document.body.appendChild(popupBg);
-    document.body.appendChild(popup);
+    document.body.appendChild(allPopup);
+    allPopup.appendChild(popupBg);
+    allPopup.appendChild(popup);
     popup.appendChild(popupTitle);
     popup.appendChild(popupContent);
 
