@@ -80,13 +80,26 @@
     width: 100%;
     }
 
+    .events_content_error {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      }
+
     .events_content_competition {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 33%;
       height: 100%;
-      cursor:default;
+      cursor: pointer;
+      }
+
+      .events_content_competition:hover {
+        color: #44005d;
+        transition: 0.5s;
       }
 
       .events_content_match {

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import "../css/all-teams/popup.css";
 import profilePicture  from "../img/user.png";
 // popup component
@@ -95,4 +94,94 @@ const PopupRoster = async (teamId) => {
 
 }
 
-export { PopupRoster}
+const PopupTournament = async (tournamentId, currentTeamSlug,tournamentFullName) => {
+    const tournamentData = [];
+    if (tournamentId) {
+    await fetch('https://api.pandascore.co/tournaments/' + tournamentId + '/standings', options)
+        .then(response => response.json())
+        .then((data) => {
+            tournamentData.push(data);
+        })
+        .catch((error) => {
+            console.log(error);
+            tournamentData.push('Record not found');
+        }
+        );
+    }
+    console.log('tournamentData', tournamentData);
+    const allPopup = document.createElement("div");
+    allPopup.id = "all-popup";
+    const popupBg = document.createElement("div");
+    popupBg.id = "popup-bg";
+    const popup = document.createElement("div");
+    popup.id = "popup";
+    const popupTitle = document.createElement("h2");
+    popupTitle.id = "popup-title";
+    popupTitle.innerHTML = tournamentFullName;
+    const popupContent = document.createElement("div");
+    popupContent.id = "popup-content";
+    if (tournamentData[0].error !== "Record not found") {
+        popupContent.innerHTML = `
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="roster-container">
+        <div class="my-tournament">
+        <div class="tournament-standings">
+        ` +
+        tournamentData[0].map((standing, index) => {
+            if (standing.team.slug.includes(currentTeamSlug)) {
+                return `
+                <div key=${index} class="tournament-standings-current-team">
+                    <h5 class="team-rank"> ${standing.rank} </h5>
+                    <h5 class="team-name"> ${standing.team.name} </h5>
+                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
+                </div>
+                `} else {
+                return `
+                <div key=${index} class="tournament-standings-team">
+                    <h5 class="team-rank"> ${standing.rank} </h5>
+                    <h5 class="team-name"> ${standing.team.name} </h5>
+                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
+                </div>
+                `
+                }
+        }).join('')
+            + `
+        </div>
+        </div>
+        </div>
+        `
+    }
+    else {
+        popupContent.innerHTML = `
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="roster-container">
+        <div class="my-tournament">
+        <div class="tournament-standings">
+        <div class="tournament-standings-team">
+        <h5 class="team-rank"> - </h5>
+        <h5 class="team-name"> Classement indisponible </h5>
+        <h5 class="team-wins-losses"> - </h5>
+        </div>
+        </div>
+        </div>
+        </div>
+        `
+    }
+    document.body.appendChild(allPopup);
+    allPopup.appendChild(popupBg);
+    allPopup.appendChild(popup);
+    popup.appendChild(popupTitle);
+    popup.appendChild(popupContent);
+
+    popupBg.onclick = () => {
+        destroyPopup();
+    }
+}
+
+export { PopupRoster, PopupTournament };
