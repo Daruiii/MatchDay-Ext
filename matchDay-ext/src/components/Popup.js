@@ -136,14 +136,14 @@ const PopupTournament = async (tournamentId, currentTeamSlug,tournamentFullName)
                 <div key=${index} class="tournament-standings-current-team">
                     <h5 class="team-rank"> ${standing.rank} </h5>
                     <h5 class="team-name"> ${standing.team.name} </h5>
-                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
+                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : standing.wins === 0 ? `<h5 class="team-wins-losses"> 0 - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
                 </div>
                 `} else {
                 return `
                 <div key=${index} class="tournament-standings-team">
                     <h5 class="team-rank"> ${standing.rank} </h5>
                     <h5 class="team-name"> ${standing.team.name} </h5>
-                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
+                    ${standing.wins? `<h5 class="team-wins-losses"> ${standing.wins} - ${standing.losses} </h5>` : standing.wins === 0 ? `<h5 class="team-wins-losses"> 0 - ${standing.losses} </h5>` : `<h5 class="team-wins-losses"> - </h5>`}
                 </div>
                 `
                 }
