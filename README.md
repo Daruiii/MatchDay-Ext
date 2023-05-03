@@ -21,3 +21,11 @@
 ## Contact
 - Email: [davidmgr93@gmail.com](mailto:davidmgr93@gmail.com)
 - Twitter: [@davidmgr93](https://twitter.com/davidmgr93)
+
+## Clone and update the extension
+
+1. Clone the repository
+2. Run `npm install`
+3. Write your code in the `src` folder
+4. Run `make build` to build the extension
+5. Then, you can load the extension in your navigator (see above)
